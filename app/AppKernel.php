@@ -8,6 +8,10 @@ class AppKernel extends Kernel
 
     public function __construct($environment, $debug)
     {
+        /*
+        * Not a good idea, bad practice, leave this to the PHP configuration server
+        * TODO: REMOVE IN PRODUCTION
+        */
         date_default_timezone_set('America/New_York');
         parent::__construct($environment, $debug);
     }
