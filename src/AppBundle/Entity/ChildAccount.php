@@ -51,6 +51,13 @@ class ChildAccount
      */
     private $purpose;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="matrix_accounts")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+     */
+    private $owner;
 
     /**
      * Get id
@@ -152,5 +159,25 @@ class ChildAccount
     public function getPurpose()
     {
         return $this->purpose;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return User 
+     */
+    public function getOwner() {
+        return $this->owner;
+    }
+
+    /**
+     * Set owner
+     * @param User owner
+     * @return ChildAccount 
+     */
+    public function setOwner($owner) {
+        $this->owner = $owner;
+
+        return $this;
     }
 }

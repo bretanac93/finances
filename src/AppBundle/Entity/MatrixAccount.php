@@ -53,6 +53,14 @@ class MatrixAccount
      */
     private $child_accounts;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="matrix_accounts")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+     */
+    private $owner;
+
     public function __construct() {
         $this->child_accounts = new ArrayCollection();
     }
@@ -151,5 +159,25 @@ class MatrixAccount
      */
     public function addChildAccount($child_account) {
         $this->child_accounts->add($child_account);
+    }
+
+    /**
+     * Get owner
+     *
+     * @return User 
+     */
+    public function getOwner() {
+        return $this->owner;
+    }
+
+    /**
+     * Set owner
+     * @param User owner
+     * @return MatrixAccount 
+     */
+    public function setOwner($owner) {
+        $this->owner = $owner;
+
+        return $this;
     }
 }
