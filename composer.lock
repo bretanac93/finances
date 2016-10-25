@@ -4,9 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d2458e8c1b5c9b76025a1ea2a4e17400",
-    "content-hash": "183d4c3ffb2100a5f0cafa6fa6d11c64",
+    "hash": "91595a43aa14179f5f3b89501c4eb98a",
+    "content-hash": "db36a5ce96af642f40872eb533e5e609",
     "packages": [
+        {
+            "name": "davidbadura/fixtures-bundle",
+            "version": "v1.0.8",
+            "target-dir": "DavidBadura/FixturesBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DavidBadura/FixturesBundle.git",
+                "reference": "4ed185946e9c7b44fba4c4114d34c8badf82c0e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DavidBadura/FixturesBundle/zipball/4ed185946e9c7b44fba4c4114d34c8badf82c0e5",
+                "reference": "4ed185946e9c7b44fba4c4114d34c8badf82c0e5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/symfony": "~2.0"
+            },
+            "require-dev": {
+                "davidbadura/faker-bundle": "1.0.*"
+            },
+            "suggest": {
+                "davidbadura/faker-bundle": "1.0.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "DavidBadura\\FixturesBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Badura",
+                    "email": "d.badura@gmx.de"
+                }
+            ],
+            "description": "A Symfony2 bundle to load yaml fixtures. Easy extendable, resolve object dependency and validate objects.",
+            "keywords": [
+                "Symfony2",
+                "database",
+                "doctrine",
+                "faker",
+                "fixtures",
+                "orm",
+                "yaml"
+            ],
+            "time": "2013-12-06 10:44:51"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
