@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -45,6 +46,16 @@ class MatrixAccount
      */
     private $account_type;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MatrixAccount", mappedBy="child_accounts", cascade={"remove"})
+     */
+    private $child_accounts;
+
+    public function __construct() {
+        $this->child_accounts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -123,5 +134,22 @@ class MatrixAccount
     public function getAccountType()
     {
         return $this->account_type;
+    }
+    /**
+     * Get child accounts
+     *
+     * @return ArrayCollection 
+     */
+    public function getChildAccounts() {
+        return $this->child_accounts;
+    }
+
+    /**
+     * Attach child account to $this
+     *
+     * @param ChildAccount 
+     */
+    public function addChildAccount($child_account) {
+        $this->child_accounts->add($child_account);
     }
 }

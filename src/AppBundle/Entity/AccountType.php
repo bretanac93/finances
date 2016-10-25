@@ -38,7 +38,7 @@ class AccountType
     private $required_balance;
     
     /**
-     * @var array
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="MatrixAccount", mappedBy="account_type", cascade={"remove"})
      */
