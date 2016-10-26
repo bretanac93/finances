@@ -12,3 +12,4 @@
 /composer.phar
 .phpintel/
 .idea/
+.DS_Store
