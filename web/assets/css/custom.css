@@ -1,0 +1,13 @@
+#login-information {
+  margin-top: 6%;
+  text-align: center;
+}
+.add-new {
+  position: absolute;
+  top: 15%;
+  right: 13%;
+  font-size: 15px;
+}
+.add-new #icon-new {
+  padding-left: 5px;
+}
