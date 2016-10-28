@@ -60,6 +60,11 @@ class ChildAccount
     private $owner;
 
     /**
+     * @ORM\OneToMany(targetEntity="FinancialPosition", mappedBy="account")
+     */
+    private $financial_positions;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -179,5 +184,46 @@ class ChildAccount
         $this->owner = $owner;
 
         return $this;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->financial_positions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add financialPosition
+     *
+     * @param \AppBundle\Entity\FinancialPosition $financialPosition
+     *
+     * @return ChildAccount
+     */
+    public function addFinancialPosition(\AppBundle\Entity\FinancialPosition $financialPosition)
+    {
+        $this->financial_positions[] = $financialPosition;
+
+        return $this;
+    }
+
+    /**
+     * Remove financialPosition
+     *
+     * @param \AppBundle\Entity\FinancialPosition $financialPosition
+     */
+    public function removeFinancialPosition(\AppBundle\Entity\FinancialPosition $financialPosition)
+    {
+        $this->financial_positions->removeElement($financialPosition);
+    }
+
+    /**
+     * Get financialPositions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFinancialPositions()
+    {
+        return $this->financial_positions;
     }
 }
