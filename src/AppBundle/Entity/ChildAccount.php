@@ -226,4 +226,8 @@ class ChildAccount
     {
         return $this->financial_positions;
     }
+
+    public function __toString() {
+        return $this->getName();
+    }
 }

@@ -135,5 +135,9 @@ class Debit extends FinancialPosition
     {
         return $this->briefDescription;
     }
+
+    public function __toString() {
+        return $this->withdrawalReason;
+    }
 }
 
