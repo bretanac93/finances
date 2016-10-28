@@ -10,17 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="debit")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DebitRepository")
  */
-class Debit
+class Debit extends FinancialPosition
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
@@ -48,17 +39,6 @@ class Debit
      * @ORM\Column(name="brief_description", type="text")
      */
     private $briefDescription;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set cashWithdrawal

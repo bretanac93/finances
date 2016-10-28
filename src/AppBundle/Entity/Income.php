@@ -10,17 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="income")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\IncomeRepository")
  */
-class Income
+class Income extends FinancialPosition
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
@@ -48,17 +39,6 @@ class Income
      * @ORM\Column(name="brief_description", type="text")
      */
     private $briefDescription;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set cashEntry
