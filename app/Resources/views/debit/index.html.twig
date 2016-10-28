@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Debits list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cashwithdrawal</th>
+                <th>Withdrawalreason</th>
+                <th>Amount</th>
+                <th>Briefdescription</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for debit in debits %}
+            <tr>
+                <td><a href="{{ path('debit_show', { 'id': debit.id }) }}">{{ debit.cashWithdrawal }}</a></td>
+                <td>{{ debit.withdrawalReason }}</td>
+                <td>{{ debit.amount }}</td>
+                <td>{{ debit.briefDescription }}</td>
+                <td>{{ debit.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('debit_show', { 'id': debit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('debit_edit', { 'id': debit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('debit_new') }}">Create a new debit</a>
+        </li>
+    </ul>
+{% endblock %}

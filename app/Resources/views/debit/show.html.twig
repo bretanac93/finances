@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Debit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Cashwithdrawal</th>
+                <td>{{ debit.cashWithdrawal }}</td>
+            </tr>
+            <tr>
+                <th>Withdrawalreason</th>
+                <td>{{ debit.withdrawalReason }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ debit.amount }}</td>
+            </tr>
+            <tr>
+                <th>Briefdescription</th>
+                <td>{{ debit.briefDescription }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ debit.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('debit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('debit_edit', { 'id': debit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
