@@ -119,4 +119,7 @@ class AccountType
     public function addMatrixAccount($matrix_account) {
         $this->matrix_accounts->add($matrix_account);
     } 
+    public function __toString() {
+        return $this->name;
+    }
 }
