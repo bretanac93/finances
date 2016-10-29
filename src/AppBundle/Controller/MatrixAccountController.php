@@ -73,27 +73,30 @@ class MatrixAccountController extends Controller
      * Displays a form to edit an existing matrixAccount entity.
      *
      */
-    public function editAction(Request $request, MatrixAccount $matrixAccount)
+    public function editAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($matrixAccount);
-        $editForm = $this->createForm('AppBundle\Form\MatrixAccountType', $matrixAccount);
-        $editForm->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
-
+        $editForm = $this->createForm('AppBundle\Form\MatrixAccountType', $matrixAccount);
         $accountTypes = $em->getRepository('AppBundle:AccountType')->findAll();
 
-        if ($editForm->isSubmitted()) {
-            $this->getDoctrine()->getManager()->flush();
+        if($request->getMethod() == "POST") {
+            $data = $editForm->getData();
+            $data->setAccountType($em->getRepository('AppBundle:AccountType')->findOneById($request->get('account_type')));
 
-            return $this->redirectToRoute('matrixaccount_index');
+            $editForm2 = $this->createForm('AppBundle\Form\MatrixAccountType', $data);
+
+            if ($editForm2->isValid()) {
+                $em->flush();
+
+                return $this->redirectToRoute('matrixaccount_index');
+            }
+            return $this->redirectToRoute('matrixaccount_edit', ['id' => $matrixAccount->getId()]);
         }
 
         return $this->render('AppBundle:matrixaccount:edit.html.twig', array(
             'matrixAccount' => $matrixAccount,
             'edit_form' => $editForm->createView(),
             'accountTypes'=>$accountTypes,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

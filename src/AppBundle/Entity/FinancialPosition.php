@@ -34,7 +34,7 @@ abstract class FinancialPosition
      * @ORM\ManyToOne(targetEntity="ChildAccount", inversedBy="financial_positions")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      */
-    protected $account = null;
+    protected $account;
 
 
     /**

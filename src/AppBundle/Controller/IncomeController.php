@@ -33,26 +33,26 @@ class IncomeController extends Controller
      */
     public function newAction(Request $request)
     {
-        $income = new Income();
-        $form = $this->createForm('AppBundle\Form\IncomeType', $income);
-        $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
-        
+
         $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($form->isSubmitted()) {
-
+        if ($request->getMethod() == "POST") {
+            $income = new Income();
+            $income->setAmount($request->get('amount'));
+            $income->setCashEntry($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashEntry')));
+            $income->setEntryReason($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('entryReason')));
+            $income->setBriefDescription($request->get('briefDescription'));
+            $income->setAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('entryReason')));
             $em->persist($income);
-            $em->flush($income);
+            $em->flush();
 
             return $this->redirectToRoute('income_index');
         }
 
         return $this->render('AppBundle:income:new.html.twig', array(
-            'income' => $income,
+            // 'income' => $income,
             'childAccounts'=>$childAccounts,
-            'form' => $form->createView(),
         ));
     }
 
@@ -76,20 +76,26 @@ class IncomeController extends Controller
      */
     public function editAction(Request $request, Income $income)
     {
-        $deleteForm = $this->createDeleteForm($income);
-        $editForm = $this->createForm('AppBundle\Form\IncomeType', $income);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        // $income = $em->getRepository('AppBundle:Income')->findOneById($id);
+        
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($editForm->isSubmitted()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($request->getMethod() == "POST") {
+            $income->setAmount($request->get('amount'));
+            $income->setCashEntry($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashEntry')));
+            $income->setEntryReason($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('entryReason')));
+            $income->setBriefDescription($request->get('briefDescription'));
+            $income->setAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('entryReason')));
+            $em->persist($income);
+            $em->flush();
 
             return $this->redirectToRoute('income_index');
         }
 
         return $this->render('AppBundle:income:edit.html.twig', array(
             'income' => $income,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'childAccounts'=>$childAccounts,
         ));
     }
 
@@ -99,14 +105,9 @@ class IncomeController extends Controller
      */
     public function deleteAction(Request $request, Income $income)
     {
-        $form = $this->createDeleteForm($income);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($income);
-            $em->flush($income);
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($income);
+        $em->flush($income);
 
         return $this->redirectToRoute('income_index');
     }
