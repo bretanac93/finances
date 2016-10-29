@@ -38,12 +38,15 @@ class DebitController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+        
             $em = $this->getDoctrine()->getManager();
             $em->persist($debit);
             $em->flush($debit);
 
             return $this->redirectToRoute('debit_index');
         }
+
+        // print_r("Todo Mal");
 
         return $this->render('AppBundle:debit:new.html.twig', array(
             'debit' => $debit,

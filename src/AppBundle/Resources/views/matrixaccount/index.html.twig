@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Matrixaccounts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for matrixAccount in matrixAccounts %}
+            <tr>
+                <td><a href="{{ path('matrixaccount_show', { 'id': matrixAccount.id }) }}">{{ matrixAccount.id }}</a></td>
+                <td>{{ matrixAccount.code }}</td>
+                <td>{{ matrixAccount.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('matrixaccount_show', { 'id': matrixAccount.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('matrixaccount_edit', { 'id': matrixAccount.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('matrixaccount_new') }}">Create a new matrixAccount</a>
+        </li>
+    </ul>
+{% endblock %}

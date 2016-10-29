@@ -17,7 +17,7 @@
                 <h3>Nuevo Egreso</h3>
             </div>
 
-            <form id="form" method="post" action="{{ url('debit_new') }}">
+            <form id="form" {{ path('debit_new') }}" method="POST" {{ form_enctype(form) }}>
 
                 
                 <div class="form-group">

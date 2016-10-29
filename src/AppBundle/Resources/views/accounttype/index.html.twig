@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accounttypes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Required_balance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for accountType in accountTypes %}
+            <tr>
+                <td><a href="{{ path('accounttype_show', { 'id': accountType.id }) }}">{{ accountType.id }}</a></td>
+                <td>{{ accountType.name }}</td>
+                <td>{{ accountType.requiredbalance }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('accounttype_show', { 'id': accountType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('accounttype_edit', { 'id': accountType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accounttype_new') }}">Create a new accountType</a>
+        </li>
+    </ul>
+{% endblock %}

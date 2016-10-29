@@ -22,7 +22,7 @@
         </div>
 
         <table class="table table-hover no-more-tables">
-        {% for income in incomes %}
+        
             <thead>
             
                 <tr>
@@ -33,6 +33,7 @@
                     <th>Descripcion</th>
                 </tr>
             </thead>
+            {% for income in incomes %}
             <tbody>
                 <tr>
                     <td>{{ income.id }}</td>
@@ -42,8 +43,9 @@
                     <td>{{ income.briefDescription }}</td>
                 </tr>
             </tbody>
+            {% endfor %}
         </table>
-        {% endfor %}
+        
         </div>
     </div>
 {% endblock %}

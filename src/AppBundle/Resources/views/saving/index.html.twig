@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Savings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Planned</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for saving in savings %}
+            <tr>
+                <td><a href="{{ path('saving_show', { 'id': saving.id }) }}">{{ saving.planned }}</a></td>
+                <td>{{ saving.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('saving_show', { 'id': saving.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('saving_edit', { 'id': saving.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('saving_new') }}">Create a new saving</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -28,3 +28,19 @@ app_debit:
 app_income:
     resource: "@AppBundle/Resources/config/routing/income.yml"
     prefix:   /income
+
+app_saving:
+    resource: "@AppBundle/Resources/config/routing/saving.yml"
+    prefix:   /saving
+
+app_matrixaccount:
+    resource: "@AppBundle/Resources/config/routing/matrixaccount.yml"
+    prefix:   /matrixaccount
+
+app_childaccount:
+    resource: "@AppBundle/Resources/config/routing/childaccount.yml"
+    prefix:   /childaccount
+
+app_accounttype:
+    resource: "@AppBundle/Resources/config/routing/accounttype.yml"
+    prefix:   /accounttype

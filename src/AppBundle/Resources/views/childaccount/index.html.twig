@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Childaccounts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for childAccount in childAccounts %}
+            <tr>
+                <td><a href="{{ path('childaccount_show', { 'id': childAccount.id }) }}">{{ childAccount.id }}</a></td>
+                <td>{{ childAccount.code }}</td>
+                <td>{{ childAccount.name }}</td>
+                <td>{{ childAccount.purpose }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('childaccount_show', { 'id': childAccount.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('childaccount_edit', { 'id': childAccount.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('childaccount_new') }}">Create a new childAccount</a>
+        </li>
+    </ul>
+{% endblock %}

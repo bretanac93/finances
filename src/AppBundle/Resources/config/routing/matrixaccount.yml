@@ -1,0 +1,24 @@
+matrixaccount_index:
+    path:     /
+    defaults: { _controller: "AppBundle:MatrixAccount:index" }
+    methods:  GET
+
+matrixaccount_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:MatrixAccount:show" }
+    methods:  GET
+
+matrixaccount_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:MatrixAccount:new" }
+    methods:  [GET, POST]
+
+matrixaccount_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:MatrixAccount:edit" }
+    methods:  [GET, POST]
+
+matrixaccount_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:MatrixAccount:delete" }
+    methods:  DELETE

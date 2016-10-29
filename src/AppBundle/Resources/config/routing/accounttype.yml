@@ -1,0 +1,24 @@
+accounttype_index:
+    path:     /
+    defaults: { _controller: "AppBundle:AccountType:index" }
+    methods:  GET
+
+accounttype_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:AccountType:show" }
+    methods:  GET
+
+accounttype_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:AccountType:new" }
+    methods:  [GET, POST]
+
+accounttype_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:AccountType:edit" }
+    methods:  [GET, POST]
+
+accounttype_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:AccountType:delete" }
+    methods:  DELETE
