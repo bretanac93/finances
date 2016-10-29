@@ -24,3 +24,7 @@ dashboard:
 app_debit:
     resource: "@AppBundle/Resources/config/routing/debit.yml"
     prefix:   /debit
+    
+app_income:
+    resource: "@AppBundle/Resources/config/routing/income.yml"
+    prefix:   /income
