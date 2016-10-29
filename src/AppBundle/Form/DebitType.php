@@ -24,6 +24,7 @@ class DebitType extends AbstractType
                 ))
                 ->add('amount')
                 ->add('briefDescription');
+
     }
     
     /**
