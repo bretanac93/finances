@@ -13,3 +13,4 @@
 .phpintel/
 .idea/
 .DS_Store
+app/data/*
