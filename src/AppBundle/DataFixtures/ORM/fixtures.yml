@@ -1,0 +1,18 @@
+AppBundle\Entity\User:
+  user_1:
+    username: test
+    email: test@domain.com
+    enabled: true
+    plainPassword: test
+        
+AppBundle\Entity\AccountType:
+  account_type_{1..10}:
+    name: <text(10)>
+    required_balance: <text(10)>
+
+AppBundle\Entity\MatrixAccount:
+  matrix_account_{1..10}:
+    code: <numberBetween(100,999999)>
+    name: <text(10)>
+    account_type: '@account_type_1'
+    owner: '@user_1'
