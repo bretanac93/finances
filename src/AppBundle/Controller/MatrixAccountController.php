@@ -36,17 +36,21 @@ class MatrixAccountController extends Controller
         $matrixAccount = new Matrixaccount();
         $form = $this->createForm('AppBundle\Form\MatrixAccountType', $matrixAccount);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $accountTypes = $em->getRepository('AppBundle:AccountType')->findAll();
+        
+        if ($form->isSubmitted()) {
+            
             $em->persist($matrixAccount);
             $em->flush($matrixAccount);
 
-            return $this->redirectToRoute('matrixaccount_show', array('id' => $matrixAccount->getId()));
+            return $this->redirectToRoute('matrixaccount_index');
         }
 
         return $this->render('AppBundle:matrixaccount:new.html.twig', array(
             'matrixAccount' => $matrixAccount,
+            'accountTypes'=>$accountTypes,
             'form' => $form->createView(),
         ));
     }
@@ -75,15 +79,20 @@ class MatrixAccountController extends Controller
         $editForm = $this->createForm('AppBundle\Form\MatrixAccountType', $matrixAccount);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+
+        $accountTypes = $em->getRepository('AppBundle:AccountType')->findAll();
+
+        if ($editForm->isSubmitted()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('matrixaccount_edit', array('id' => $matrixAccount->getId()));
+            return $this->redirectToRoute('matrixaccount_index');
         }
 
         return $this->render('AppBundle:matrixaccount:edit.html.twig', array(
             'matrixAccount' => $matrixAccount,
             'edit_form' => $editForm->createView(),
+            'accountTypes'=>$accountTypes,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -14,14 +14,8 @@ class DebitType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('cashWithdrawal' , EntityType::class, array(
-                'class'=>'AppBundle:ChildAccount',
-                'choice_label'=>'name'
-                ))
-                ->add('withdrawalReason' , EntityType::class, array(
-                'class'=>'AppBundle:ChildAccount',
-                'choice_label'=>'name'
-                ))
+        $builder->add('cashWithdrawal')
+                ->add('withdrawalReason')
                 ->add('amount')
                 ->add('briefDescription');
 

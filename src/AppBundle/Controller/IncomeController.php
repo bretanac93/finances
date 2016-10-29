@@ -37,8 +37,12 @@ class IncomeController extends Controller
         $form = $this->createForm('AppBundle\Form\IncomeType', $income);
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
+
         if ($form->isSubmitted()) {
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($income);
             $em->flush($income);
 
@@ -47,6 +51,7 @@ class IncomeController extends Controller
 
         return $this->render('AppBundle:income:new.html.twig', array(
             'income' => $income,
+            'childAccounts'=>$childAccounts,
             'form' => $form->createView(),
         ));
     }
