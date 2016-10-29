@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DebitType extends AbstractType
 {
@@ -13,7 +14,16 @@ class DebitType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('cashWithdrawal')->add('withdrawalReason')->add('amount')->add('briefDescription')->add('account')        ;
+        $builder->add('cashWithdrawal' , EntityType::class, array(
+                'class'=>'AppBundle:ChildAccount',
+                'choice_label'=>'name'
+                ))
+                ->add('withdrawalReason' , EntityType::class, array(
+                'class'=>'AppBundle:ChildAccount',
+                'choice_label'=>'name'
+                ))
+                ->add('amount')
+                ->add('briefDescription');
     }
     
     /**

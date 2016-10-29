@@ -1,6 +1,2 @@
-app_debit:
-    resource: "@AppBundle/Controller/DebitController.php"
-    type:     annotation
-
 app:
     resource: "@AppBundle/Resources/config/routing/routing.yml"

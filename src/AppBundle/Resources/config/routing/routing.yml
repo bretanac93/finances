@@ -20,3 +20,7 @@ fos_user_change_password:
 dashboard:
     path: /dashboard/
     defaults: { _controller: AppBundle:DashBoard:index }
+    
+app_debit:
+    resource: "@AppBundle/Resources/config/routing/debit.yml"
+    prefix:   /debit

@@ -1,0 +1,24 @@
+debit_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Debit:index" }
+    methods:  GET
+
+debit_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Debit:show" }
+    methods:  GET
+
+debit_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Debit:new" }
+    methods:  [GET, POST]
+
+debit_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Debit:edit" }
+    methods:  [GET, POST]
+
+debit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Debit:delete" }
+    methods:  DELETE

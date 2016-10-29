@@ -4,21 +4,17 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Debit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Debit controller.
  *
- * @Route("debit")
  */
 class DebitController extends Controller
 {
     /**
      * Lists all debit entities.
      *
-     * @Route("/", name="debit_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -26,7 +22,7 @@ class DebitController extends Controller
 
         $debits = $em->getRepository('AppBundle:Debit')->findAll();
 
-        return $this->render('debit/index.html.twig', array(
+        return $this->render('AppBundle:debit:index.html.twig', array(
             'debits' => $debits,
         ));
     }
@@ -34,8 +30,6 @@ class DebitController extends Controller
     /**
      * Creates a new debit entity.
      *
-     * @Route("/new", name="debit_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -48,10 +42,10 @@ class DebitController extends Controller
             $em->persist($debit);
             $em->flush($debit);
 
-            return $this->redirectToRoute('debit_show', array('id' => $debit->getId()));
+            return $this->redirectToRoute('debit_index');
         }
 
-        return $this->render('debit/new.html.twig', array(
+        return $this->render('AppBundle:debit:new.html.twig', array(
             'debit' => $debit,
             'form' => $form->createView(),
         ));
@@ -60,8 +54,6 @@ class DebitController extends Controller
     /**
      * Finds and displays a debit entity.
      *
-     * @Route("/{id}", name="debit_show")
-     * @Method("GET")
      */
     public function showAction(Debit $debit)
     {
@@ -76,8 +68,6 @@ class DebitController extends Controller
     /**
      * Displays a form to edit an existing debit entity.
      *
-     * @Route("/{id}/edit", name="debit_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Debit $debit)
     {
@@ -91,7 +81,7 @@ class DebitController extends Controller
             return $this->redirectToRoute('debit_edit', array('id' => $debit->getId()));
         }
 
-        return $this->render('debit/edit.html.twig', array(
+        return $this->render('AppBundle:debit:edit.html.twig', array(
             'debit' => $debit,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -101,8 +91,6 @@ class DebitController extends Controller
     /**
      * Deletes a debit entity.
      *
-     * @Route("/{id}", name="debit_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Debit $debit)
     {
