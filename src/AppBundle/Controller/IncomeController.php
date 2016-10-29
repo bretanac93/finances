@@ -37,7 +37,7 @@ class IncomeController extends Controller
         $form = $this->createForm('AppBundle\Form\IncomeType', $income);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($income);
             $em->flush($income);
@@ -75,10 +75,10 @@ class IncomeController extends Controller
         $editForm = $this->createForm('AppBundle\Form\IncomeType', $income);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('income_edit', array('id' => $income->getId()));
+            return $this->redirectToRoute('income_index');
         }
 
         return $this->render('AppBundle:income:edit.html.twig', array(
@@ -97,7 +97,7 @@ class IncomeController extends Controller
         $form = $this->createDeleteForm($income);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($income);
             $em->flush($income);
@@ -117,7 +117,7 @@ class IncomeController extends Controller
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('income_delete', array('id' => $income->getId())))
-            ->setMethod('DELETE')
+            // ->setMethod('DELETE')
             ->getForm()
         ;
     }

@@ -31,6 +31,7 @@
                     <th>Razon de Entrada</th>
                     <th>Importe</th>
                     <th>Descripcion</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             {% for income in incomes %}
@@ -41,6 +42,10 @@
                     <td>{{ income.entryReason }}</td>
                     <td>{{ income.amount }}</td>
                     <td>{{ income.briefDescription }}</td>
+                    <td><a href="{{ path('income_edit',{ 'id':income.id }) }}"><i class="fa fa-pencil" id="edit_pencil"></i></a>
+
+                    <a href="{{ path('income_delete',{ 'id':income.id }) }}"><i class="fa fa-times" id="delete_times"></i></a>
+                    </td>
                 </tr>
             </tbody>
             {% endfor %}

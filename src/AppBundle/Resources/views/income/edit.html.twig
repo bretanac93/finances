@@ -1,6 +1,7 @@
 {% extends 'layout2.html.twig' %}
 
-{% block body %}<div class="page-content">
+{% block body %}
+<div class="page-content">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
         <div id="portlet-config" class="modal hide">
             <div class="modal-header">
@@ -16,7 +17,7 @@
                 <h3>Editar Ingreso</h3>
             </div>
 
-            <form id="form" method="post" action="{{ url('income_new')}}">
+            <form id="form" method="post" action="{{ path('income_edit' , { 'id':income.id }) }}">
 
                 
                 <div class="form-group">
@@ -24,7 +25,7 @@
                     <span class="help">e.g. "Balance Genral"</span>
                     <div class="  right">
                         <i class=""></i>
-                        {{ form_widget(edit_form.cashEntry , { 'attr': { 'class':'select2 form-control' } }) }}
+                        <select id="appbundle_income_cashEntry" name="appbundle_income[cashEntry]" class="select2 form-control"><option value="1">dqwe</option></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -32,7 +33,7 @@
                     <span class="help">e.g. "Salario Neto"</span>
                     <div class="  right">
                         <i class=""></i>
-                        {{ form_widget(edit_form.entryReason , { 'attr': { 'class':'select2 form-control' } }) }}
+                        <select id="appbundle_income_entryReason" name="appbundle_income[entryReason]" class="select2 form-control"><option value="1">dqwe</option></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -40,7 +41,7 @@
                     <span class="help">e.g. "250,000,000"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        {{ form_widget(edit_form.amount , { 'attr': { 'class':'form-control' } }) }}
+                        <input type="text" id="appbundle_income_amount" name="appbundle_income[amount]" value="{{ income.amount }}" required="required" class="form-control" value="23">
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,13 +49,13 @@
                     <span class="help">e.g. "Mi Cheque"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        {{ form_widget(edit_form.briefDescription , { 'attr': { 'class':'form-control' } }) }}
+                        <textarea id="appbundle_income_briefDescription" name="appbundle_income[briefDescription]" required="required" class="form-control">{{ income.briefDescription }}</textarea>
                         
                     </div>
                 </div>
                 <div class="form-actions">
                     <div class="pull-right">
-                        <input type="submit" value="Crear" class="btn btn-success btn-cons"/><i class="icon-ok"></i>
+                        <input type="submit" value="Editar" class="btn btn-success btn-cons"><i class="icon-ok"></i>
                     </div>
                 </div>
             </form>

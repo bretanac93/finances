@@ -21,4 +21,4 @@ income_edit:
 income_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Income:delete" }
-    methods:  DELETE
+    

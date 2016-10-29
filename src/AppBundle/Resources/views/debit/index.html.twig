@@ -30,6 +30,7 @@
                     <th>Razon de Salida</th>
                     <th>Importe</th>
                     <th>Descripcion</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             {% for debit in debits %}
@@ -40,6 +41,10 @@
                     <td>{{ debit.withdrawalReason }}</td>
                     <td>{{ debit.amount }}</td>
                     <td>{{ debit.briefDescription }}</td>
+                    <td><a href="{{ path('debit_edit',{ 'id':debit.id }) }}"><i class="fa fa-pencil" id="edit_pencil"></i></a>
+
+                    <a href="{{ path('debit_delete',{ 'id':debit.id }) }}"><i class="fa fa-times" id="delete_times"></i></a>
+                    </td>
                 </tr>
             </tbody>
             {% endfor %}

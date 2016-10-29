@@ -17,7 +17,7 @@
                 <h3>Nuevo Ingreso</h3>
             </div>
 
-            <form id="form" method="post" action="{{ url('income_new') }}">
+            <form id="form" method="post" action="http://localhost:8000/dashboard/income/new">
 
                 
                 <div class="form-group">
@@ -25,7 +25,7 @@
                     <span class="help">e.g. "Balance Genral"</span>
                     <div class="  right">
                         <i class=""></i>
-                        {{ form_widget(form.cashEntry , { 'attr': { 'class':'select2 form-control' } }) }}
+                        <select id="appbundle_income_cashEntry" name="appbundle_income[cashEntry]" class="select2 form-control"><option value="1">dqwe</option></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -33,7 +33,7 @@
                     <span class="help">e.g. "Salario Neto"</span>
                     <div class="  right">
                         <i class=""></i>
-                        {{ form_widget(form.entryReason , { 'attr': { 'class':'select2 form-control' } }) }}
+                        <select id="appbundle_income_entryReason" name="appbundle_income[entryReason]" class="select2 form-control"><option value="1">dqwe</option></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                     <span class="help">e.g. "250,000,000"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        {{ form_widget(form.amount , { 'attr': { 'class':'form-control' } }) }}
+                        <input type="text" id="appbundle_income_amount" name="appbundle_income[amount]" required="required" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,13 +49,13 @@
                     <span class="help">e.g. "Mi Cheque"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        {{ form_widget(form.briefDescription , { 'attr': { 'class':'form-control' } }) }}
+                        <textarea id="appbundle_income_briefDescription" name="appbundle_income[briefDescription]" required="required" class="form-control"></textarea>
                         
                     </div>
                 </div>
                 <div class="form-actions">
                     <div class="pull-right">
-                        <input type="submit" value="Crear" class="btn btn-success btn-cons"/><i class="icon-ok"></i>
+                        <input type="submit" value="Crear" class="btn btn-success btn-cons"><i class="icon-ok"></i>
                     </div>
                 </div>
             </form>

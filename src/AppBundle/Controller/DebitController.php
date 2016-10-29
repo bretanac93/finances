@@ -37,7 +37,7 @@ class DebitController extends Controller
         $form = $this->createForm('AppBundle\Form\DebitType', $debit);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
         
             $em = $this->getDoctrine()->getManager();
             $em->persist($debit);
@@ -88,6 +88,7 @@ class DebitController extends Controller
             'debit' => $debit,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+        
         ));
     }
 
