@@ -49,7 +49,7 @@ class MatrixAccount
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="MatrixAccount", mappedBy="child_accounts", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="ChildAccount", mappedBy="matrix_account", cascade={"remove"})
      */
     private $child_accounts;
 
