@@ -22,7 +22,7 @@ class SavingController extends Controller
 
         $savings = $em->getRepository('AppBundle:Saving')->findAll();
 
-        return $this->render('saving/index.html.twig', array(
+        return $this->render('AppBundle:saving:index.html.twig', array(
             'savings' => $savings,
         ));
     }
@@ -33,21 +33,26 @@ class SavingController extends Controller
      */
     public function newAction(Request $request)
     {
-        $saving = new Saving();
-        $form = $this->createForm('AppBundle\Form\SavingType', $saving);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($request->getMethod() == "POST") {
+
+            $saving = new Saving();
+            
+            $saving->setSavingAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('savingAccount')));
+            $saving->setPlanned($request->get('planned'));
+            $saving->setTotalSaving(0);
+            $saving->setBalance(0);
+
             $em->persist($saving);
-            $em->flush($saving);
+            $em->flush();
 
-            return $this->redirectToRoute('saving_show', array('id' => $saving->getId()));
+            return $this->redirectToRoute('saving_index');
         }
 
-        return $this->render('saving/new.html.twig', array(
-            'saving' => $saving,
-            'form' => $form->createView(),
+        return $this->render('AppBundle:saving:new.html.twig', array(
+            'childAccounts'=>$childAccounts            
         ));
     }
 
@@ -71,20 +76,27 @@ class SavingController extends Controller
      */
     public function editAction(Request $request, Saving $saving)
     {
-        $deleteForm = $this->createDeleteForm($saving);
-        $editForm = $this->createForm('AppBundle\Form\SavingType', $saving);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($request->getMethod() == "POST") {
 
-            return $this->redirectToRoute('saving_edit', array('id' => $saving->getId()));
+            
+            
+            $saving->setSavingAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('savingAccount')));
+            $saving->setPlanned($request->get('planned'));
+            $saving->setTotalSaving(0);
+            $saving->setBalance(0);
+
+            $em->persist($saving);
+            $em->flush();
+
+            return $this->redirectToRoute('saving_index');
         }
 
-        return $this->render('saving/edit.html.twig', array(
-            'saving' => $saving,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('AppBundle:saving:edit.html.twig', array(
+            'saving'=>$saving,
+            'childAccounts'=>$childAccounts            
         ));
     }
 
@@ -94,15 +106,9 @@ class SavingController extends Controller
      */
     public function deleteAction(Request $request, Saving $saving)
     {
-        $form = $this->createDeleteForm($saving);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($saving);
-            $em->flush($saving);
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($saving);
+        $em->flush($saving);
         return $this->redirectToRoute('saving_index');
     }
 

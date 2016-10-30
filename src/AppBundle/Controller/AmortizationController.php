@@ -33,21 +33,25 @@ class AmortizationController extends Controller
      */
     public function newAction(Request $request)
     {
-        $amortization = new Amortization();
-        $form = $this->createForm('AppBundle\Form\AmortizationType', $amortization);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($request->getMethod() == "POST") {
+            $amortization = new Amortization();
+            
+            $amortization->setAmortizationAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('amortizationAccount')));
+            $amortization->setPlanned($request->get('planned'));
+            $amortization->setTotalAmortization(0);
+            $amortization->setTotalExcessive(0);
+
             $em->persist($amortization);
-            $em->flush($amortization);
+            $em->flush();
 
-            return $this->redirectToRoute('amortization_show', array('id' => $amortization->getId()));
+            return $this->redirectToRoute('amortization_index');
         }
 
         return $this->render('AppBundle:amortization:new.html.twig', array(
-            'amortization' => $amortization,
-            'form' => $form->createView(),
+            'childAccounts'=>$childAccounts            
         ));
     }
 
@@ -71,20 +75,26 @@ class AmortizationController extends Controller
      */
     public function editAction(Request $request, Amortization $amortization)
     {
-        $deleteForm = $this->createDeleteForm($amortization);
-        $editForm = $this->createForm('AppBundle\Form\AmortizationType', $amortization);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-            return $this->redirectToRoute('amortization_edit', array('id' => $amortization->getId()));
+        if ($request->getMethod() == "POST") {
+            
+            $amortization->setAmortizationAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('amortizationAccount')));
+            $amortization->setPlanned($request->get('planned'));
+            $amortization->setTotalAmortization(0);
+            $amortization->setTotalExcessive(0);
+
+            $em->persist($amortization);
+            $em->flush();
+
+            return $this->redirectToRoute('amortization_index');
         }
 
-        return $this->render('aAppBundle:amortization:edit.html.twig', array(
-            'amortization' => $amortization,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('AppBundle:amortization:edit.html.twig', array(
+            'childAccounts'=>$childAccounts,
+            'amortization'=>$amortization
         ));
     }
 
@@ -94,15 +104,9 @@ class AmortizationController extends Controller
      */
     public function deleteAction(Request $request, Amortization $amortization)
     {
-        $form = $this->createDeleteForm($amortization);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($amortization);
-            $em->flush($amortization);
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($amortization);
+        $em->flush($amortization);
         return $this->redirectToRoute('amortization_index');
     }
 

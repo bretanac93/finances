@@ -1,47 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout2.html.twig' %}
 
 {% block body %}
-    <h1>Expenditures list</h1>
+  <div class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
+            </div>
+            <div class="modal-body"> Widget settings form goes here</div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="content">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Expenditureaccount</th>
-                <th>Planned</th>
-                <th>Totalexpenditure</th>
-                <th>Totalexcessive</th>
-                <th>Subtotalexcessive</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for expenditure in expenditures %}
-            <tr>
-                <td><a href="{{ path('expenditure_show', { 'id': expenditure.id }) }}">{{ expenditure.expenditureAccount }}</a></td>
-                <td>{{ expenditure.planned }}</td>
-                <td>{{ expenditure.totalExpenditure }}</td>
-                <td>{{ expenditure.totalExcessive }}</td>
-                <td>{{ expenditure.subTotalExcessive }}</td>
-                <td>{{ expenditure.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('expenditure_show', { 'id': expenditure.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('expenditure_edit', { 'id': expenditure.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="page-title">
+            <h3>Gastos</h3>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('expenditure_new') }}">Create a new expenditure</a>
-        </li>
-    </ul>
+        <div class="add-new">
+            <a href="{{ path('expenditure_new') }}" title=""><i class="fa fa-plus"><span id="icon-new">Crear Cuenta de Gastos</span></i></a>
+        </div>
+
+        <table class="table table-hover no-more-tables">
+        
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cuenta de Gasto</th>
+                    <th>Planificado</th>
+                    <th>Total de Gasto</th>
+                    <th>Total de Excedente</th>
+                    <th>SubTotal de Excedente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            {% for expenditure in expenditures %}
+            <tbody>
+                <tr>
+                    <td>{{ expenditure.id }}</td>
+                    <td>{{ expenditure.expenditureAccount }}</td>
+                    <td>{{ expenditure.planned }}</td>
+                    <td>{{ expenditure.totalExpenditure }}</td>
+                    <td>{{ expenditure.totalExcessive }}</td>
+                    <td>{{ expenditure.subTotalExcessive }}</td>
+                    <td><a href="{{ path('expenditure_edit',{ 'id':expenditure.id }) }}"><i class="fa fa-pencil" id="edit_pencil"></i></a>
+
+                    <a href="{{ path('expenditure_delete',{ 'id':expenditure.id }) }}"><i class="fa fa-times" id="delete_times"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        
+        </div>
+    </div>
 {% endblock %}

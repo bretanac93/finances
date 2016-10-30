@@ -21,4 +21,4 @@ saving_edit:
 saving_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Saving:delete" }
-    methods:  DELETE
+    methods:  GET

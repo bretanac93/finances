@@ -21,4 +21,4 @@ expenditure_edit:
 expenditure_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Expenditure:delete" }
-    methods:  DELETE
+    methods:  GET

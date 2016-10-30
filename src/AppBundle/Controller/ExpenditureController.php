@@ -22,7 +22,7 @@ class ExpenditureController extends Controller
 
         $expenditures = $em->getRepository('AppBundle:Expenditure')->findAll();
 
-        return $this->render('expenditure/index.html.twig', array(
+        return $this->render('AppBundle:expenditure:index.html.twig', array(
             'expenditures' => $expenditures,
         ));
     }
@@ -33,21 +33,26 @@ class ExpenditureController extends Controller
      */
     public function newAction(Request $request)
     {
-        $expenditure = new Expenditure();
-        $form = $this->createForm('AppBundle\Form\ExpenditureType', $expenditure);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($request->getMethod() == "POST") {
+            $expenditure = new Expenditure();
+            
+            $expenditure->setExpenditureAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('expenditureAccount')));
+            $expenditure->setPlanned($request->get('planned'));
+            $expenditure->setTotalExpenditure(0);
+            $expenditure->setTotalExcessive(0);
+            $expenditure->setSubTotalExcessive(0);
+
             $em->persist($expenditure);
-            $em->flush($expenditure);
+            $em->flush();
 
-            return $this->redirectToRoute('expenditure_show', array('id' => $expenditure->getId()));
+            return $this->redirectToRoute('expenditure_index');
         }
 
-        return $this->render('expenditure/new.html.twig', array(
-            'expenditure' => $expenditure,
-            'form' => $form->createView(),
+        return $this->render('AppBundle:expenditure:new.html.twig', array(
+            'childAccounts'=>$childAccounts            
         ));
     }
 
@@ -71,20 +76,26 @@ class ExpenditureController extends Controller
      */
     public function editAction(Request $request, Expenditure $expenditure)
     {
-        $deleteForm = $this->createDeleteForm($expenditure);
-        $editForm = $this->createForm('AppBundle\Form\ExpenditureType', $expenditure);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($request->getMethod() == "POST") {
+            
+            $expenditure->setExpenditureAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('expenditureAccount')));
+            $expenditure->setPlanned($request->get('planned'));
+            $expenditure->setTotalExpenditure(0);
+            $expenditure->setTotalExcessive(0);
+            $expenditure->setSubTotalExcessive(0);
 
-            return $this->redirectToRoute('expenditure_edit', array('id' => $expenditure->getId()));
+            $em->persist($expenditure);
+            $em->flush();
+
+            return $this->redirectToRoute('expenditure_index');
         }
 
-        return $this->render('expenditure/edit.html.twig', array(
-            'expenditure' => $expenditure,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('AppBundle:expenditure:edit.html.twig', array(
+            'childAccounts'=>$childAccounts,
+            'expenditure'=>$expenditure      
         ));
     }
 
@@ -94,15 +105,9 @@ class ExpenditureController extends Controller
      */
     public function deleteAction(Request $request, Expenditure $expenditure)
     {
-        $form = $this->createDeleteForm($expenditure);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($expenditure);
-            $em->flush($expenditure);
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($expenditure);
+        $em->flush($expenditure);
         return $this->redirectToRoute('expenditure_index');
     }
 

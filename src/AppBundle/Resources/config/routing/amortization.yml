@@ -21,4 +21,4 @@ amortization_edit:
 amortization_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Amortization:delete" }
-    methods:  DELETE
+    methods:  GET

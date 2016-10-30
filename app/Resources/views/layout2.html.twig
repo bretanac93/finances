@@ -119,7 +119,7 @@
               <li><a href="calender.html">My Calendar</a> </li>
               <li><a href="email.html"> My Inbox&nbsp;&nbsp;<span class="badge badge-important animated bounceIn">2</span></a> </li>
               <li class="divider"></li>
-              <li><a href="login.html"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+              <li><a href="/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
             </ul>
           </li>
           
@@ -155,9 +155,9 @@
             <ul class="sub-menu">
               <li > <a href="{{ path('income_index') }}">Ingresos </a> </li>
               <li > <a href="{{ path('debit_index') }}">Egresos </a> </li>
-              <li > <a href="list_gastos.html">Gastos</a> </li>
-              <li > <a href="list_ahorros.html">Ahorros</a> </li>
-              <li > <a href="list_amortizaciones.html">Amortizaciones</a> </li>
+              <li > <a href="{{path('expenditure_index') }}">Gastos</a> </li>
+              <li > <a href="{{path('saving_index') }}">Ahorros</a> </li>
+              <li > <a href="{{ path('amortization_index') }}">Amortizaciones</a> </li>
             </ul>
         </li>  
         <li class=""> <a href="javascript:;"> <i class="icon-custom-home"></i> <span class="title">Saldo Inicial</span> <span class="arrow "></span> </a>

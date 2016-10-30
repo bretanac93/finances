@@ -24,11 +24,11 @@
                     <span class="help">e.g. "Balance Genral"</span>
                     <div class="  right">
                         <i class=""></i>
-                        <select id="appbundle_amortization_amortizationAccount" name="appbundle_amortization[amortizationAccount]" class="select2 form-control">
+                        <select id="appbundle_amortization_amortizationAccount" name="amortizationAccount" class="select2 form-control">
 
                             {% for childAccount in childAccounts %}
 
-                                <option value="{{ childAccount.name }}">
+                                <option value="{{ childAccount.id }}">
                                     {{ childAccount.name }}
                                 </option>
                             {% endfor %}
@@ -40,7 +40,7 @@
                     <span class="help">e.g. "250,000,000"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        <input type="text" id="appbundle_amortization_amount" name="appbundle_amortization[planned]"
+                        <input type="text" id="appbundle_amortization_amount" name="planned"
                         required="required" class="form-control">
                     </div>
                 </div>
@@ -49,15 +49,7 @@
                     <span class="help">e.g. "250,000,000"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        <input type="text" id="appbundle_amortization_totalAmortization" name="appbundle_amortization[totalAmortization]" required="required" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Total de Amortizacion</label>
-                    <span class="help">e.g. "250,000,000"</span>
-                    <div class="input-with-icon  right">
-                        <i class=""></i>
-                        <input type="text" id="appbundle_amortization_totalAmortization" name="appbundle_amortization[totalAmortization]" required="required" class="form-control">
+                        <input type="text" id="appbundle_amortization_totalAmortization" name="totalAmortization" placeholder="AutoGenerado" required="required" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="form-group">
@@ -65,7 +57,15 @@
                     <span class="help">e.g. "250,000,000"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        <input type="text" id="appbundle_amortization_totalExcessive" name="appbundle_amortization[totalExcessive]" required="required" class="form-control">
+                        <input type="text" id="appbundle_amortization_totalExcessive" name="totalExcessive" placeholder="AutoGenerado" required="required" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">SubTotal de Excedente</label>
+                    <span class="help">e.g. "250,000,000"</span>
+                    <div class="input-with-icon  right">
+                        <i class=""></i>
+                        <input type="text" id="appbundle_amortization_totalExcessive" name="subtotalExcessive" placeholder="AutoGenerado" required="required" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="form-actions">
