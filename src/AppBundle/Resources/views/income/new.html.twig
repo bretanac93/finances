@@ -25,7 +25,7 @@
                     <span class="help">e.g. "Balance Genral"</span>
                     <div class="  right">
                         <i class=""></i>
-                        <select id="appbundle_icome_cashEntry" name="appbundle_income[cashEntry]" class="select2 form-control">
+                        <select id="appbundle_income_cashEntry" name="appbundle_income[cashEntry]" class="select2 form-control">
                             {% for childAccount in childAccounts %}
 
                                     <option value="{{ childAccount.name }}">
@@ -42,10 +42,9 @@
                         <i class=""></i>
                         <select id="appbundle_income_entryReason" name="appbundle_income[entryReason]" class="select2 form-control">
                             {% for childAccount in childAccounts %}
-
-                                    <option value="{{ childAccount.name }}">
-                                        {{ childAccount.name }}
-                                    </option>
+                                <option value="{{ childAccount.name }}">
+                                    {{ childAccount.name }}
+                                </option>
                             {% endfor %}
                         </select>
                     </div>

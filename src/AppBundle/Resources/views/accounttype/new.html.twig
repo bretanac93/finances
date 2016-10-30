@@ -1,16 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout2.html.twig' %}
 
 {% block body %}
-    <h1>Accounttype creation</h1>
+<div class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
+            </div>
+            <div class="modal-body"> Widget settings form goes here</div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="content">
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="page-title">
+                    <h3>Nuevo Cuenta</h3>
+                </div>
+            {% endif %}
+            
+            <form id="form" action="{{ path('accounttype_new') }}" method="POST">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                <div class="form-group">
+                    <label class="form-label">Nombre</label>
+                    <span class="help">e.g. "Bienes y Derechos"</span>
+                    <div class="input-with-icon  right">
+                        <i class=""></i>
+                        <input type="text" id="appbundle_accounttype_name" name="appbundle_accounttype[name]" required="required" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Balance</label>
+                    <span class="help">e.g. "Positivo"</span>
+                    <div class="input-with-icon  right">
+                        <i class=""></i>
+                        <select id="appbundle_accounttype_required_balance" name="appbundle_accounttype[required_balance]" class="select2 form-control">
+                            <option value="Positivo">Positivo</option>
+                            <option value="Negativo">Negativo</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="pull-right">
+                        <input type="submit" value="Crear" class="btn btn-success btn-cons"><i class="icon-ok"></i>
+                    </div>
+                </div>
+            </form>
 
-    <ul>
-        <li>
-            <a href="{{ path('accounttype_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+        </div>
+    </div>
 {% endblock %}
