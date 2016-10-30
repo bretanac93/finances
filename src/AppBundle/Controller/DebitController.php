@@ -33,29 +33,26 @@ class DebitController extends Controller
      */
     public function newAction(Request $request)
     {
-        $debit = new Debit();
-        $form = $this->createForm('AppBundle\Form\DebitType', $debit);
-        $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
-        
         $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
-        
-        if ($form->isSubmitted()) {
-        
+
+        if ($request->getMethod() == "POST") {
+            $debit = new Debit();
+            
+            $debit->setCashWithdrawal($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashWithdrawal')));
+            $debit->setWithdrawalReason($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('withdrawalReason')));
+            $debit->setAmount($request->get('amount'));
+            $debit->setAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashWithdrawal')));
+            $debit->setBriefDescription($request->get('briefDescription'));
+
             $em->persist($debit);
-            $em->flush($debit);
+            $em->flush();
 
             return $this->redirectToRoute('debit_index');
         }
 
-        // print_r("Todo Mal");
-
-        
-
         return $this->render('AppBundle:debit:new.html.twig', array(
-            'debit' => $debit,
-            'childAccounts'=>$childAccounts,
-            'form' => $form->createView(),
+            'childAccounts'=>$childAccounts            
         ));
     }
 
@@ -79,26 +76,24 @@ class DebitController extends Controller
      */
     public function editAction(Request $request, Debit $debit)
     {
-        $deleteForm = $this->createDeleteForm($debit);
-        $editForm = $this->createForm('AppBundle\Form\DebitType', $debit);
-        $editForm->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
-        
         $childAccounts = $em->getRepository('AppBundle:ChildAccount')->findAll();
+        
+        if ($request->getMethod() == "POST") {
+            $debit->setCashWithdrawal($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashWithdrawal')));
+            $debit->setWithdrawalReason($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashWithdrawal')));
+            $debit->setAmount($request->get('amount'));
+            $debit->setAccount($em->getRepository('AppBundle:ChildAccount')->findOneById($request->get('cashWithdrawal')));
 
-        if ($editForm->isSubmitted()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->persist($debit);
+            $em->flush();
 
             return $this->redirectToRoute('debit_index');
         }
 
         return $this->render('AppBundle:debit:edit.html.twig', array(
             'debit' => $debit,
-            'edit_form' => $editForm->createView(),
             'childAccounts'=>$childAccounts,
-            'delete_form' => $deleteForm->createView(),
-        
         ));
     }
 
@@ -108,15 +103,9 @@ class DebitController extends Controller
      */
     public function deleteAction(Request $request, Debit $debit)
     {
-        $form = $this->createDeleteForm($debit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($debit);
-            $em->flush($debit);
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($debit);
+        $em->flush($debit);
         return $this->redirectToRoute('debit_index');
     }
 

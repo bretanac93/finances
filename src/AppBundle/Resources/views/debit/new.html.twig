@@ -24,11 +24,11 @@
                     <span class="help">e.g. "Balance Genral"</span>
                     <div class="  right">
                         <i class=""></i>
-                        <select id="appbundle_debit_cashWithdrawal" name="appbundle_debit[cashWithdrawal]" class="select2 form-control">
+                        <select id="appbundle_debit_cashWithdrawal" name="cashWithdrawal" class="select2 form-control">
 
                             {% for childAccount in childAccounts %}
 
-                                <option value="{{ childAccount.name }}">
+                                <option value="{{ childAccount.id }}">
                                     {{ childAccount.name }}
                                 </option>
                             {% endfor %}
@@ -41,13 +41,13 @@
                     <div class="  right">
                         <i class=""></i>
                         
-                            <select id="appbundle_debit_withdrawalReason" name="appbundle_debit[withdrawalReason]" class="select2 form-control">
-                            {% for childAccount in childAccounts %}
-                                <option value="{{ childAccount.name }}">
-                                    {{ childAccount.name }}
-                                </option>
-                            {% endfor %}
-                            </select>
+                        <select id="appbundle_debit_withdrawalReason" name="withdrawalReason" class="select2 form-control">
+                        {% for childAccount in childAccounts %}
+                            <option value="{{ childAccount.id }}">
+                                {{ childAccount.name }}
+                            </option>
+                        {% endfor %}
+                        </select>
                         
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <span class="help">e.g. "250,000,000"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        <input type="text" id="appbundle_debit_amount" name="appbundle_debit[amount]" required="required" class="form-control">
+                        <input type="text" id="appbundle_debit_amount" name="amount" required="required" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +64,7 @@
                     <span class="help">e.g. "Mi Cheque"</span>
                     <div class="input-with-icon  right">
                         <i class=""></i>
-                        <textarea id="appbundle_debit_briefDescription" name="appbundle_debit[briefDescription]" required="required" class="form-control"></textarea>
+                        <textarea id="appbundle_debit_briefDescription" name="briefDescription" required="required" class="form-control"></textarea>
                         
                     </div>
                 </div>
