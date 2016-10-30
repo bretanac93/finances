@@ -33,21 +33,24 @@ class ChildAccountController extends Controller
      */
     public function newAction(Request $request)
     {
-        $childAccount = new Childaccount();
-        $form = $this->createForm('AppBundle\Form\ChildAccountType', $childAccount);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($childAccount);
-            $em->flush($childAccount);
+        $matrixAccounts = $em->getRepository('AppBundle:MatrixAccount')->findAll();
 
-            return $this->redirectToRoute('childaccount_show', array('id' => $childAccount->getId()));
+        if ($request->getMethod() == "POST") {
+            $child = new ChildAccount();
+            $child->setCode("1.1");
+            $child->setName($request->get('name'));
+            $child->setMatrixAccount($em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount')));
+            $em->persist($child);
+            $em->flush();
+
+            return $this->redirectToRoute('childaccount_index');
         }
 
         return $this->render('AppBundle:childaccount:new.html.twig', array(
-            'childAccount' => $childAccount,
-            'form' => $form->createView(),
+            // 'income' => $income,
+            'matrixAccounts'=>$matrixAccounts
         ));
     }
 
@@ -71,20 +74,23 @@ class ChildAccountController extends Controller
      */
     public function editAction(Request $request, ChildAccount $childAccount)
     {
-        $deleteForm = $this->createDeleteForm($childAccount);
-        $editForm = $this->createForm('AppBundle\Form\ChildAccountType', $childAccount);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $matrixAccounts = $em->getRepository('AppBundle:MatrixAccount')->findAll();
 
-            return $this->redirectToRoute('childaccount_edit', array('id' => $childAccount->getId()));
+        if ($request->getMethod() == "POST") {
+            $childAccount->setCode("1.1");
+            $childAccount->setName($request->get('name'));
+            $childAccount->setMatrixAccount($em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount')));
+            $em->persist($childAccount);
+            $em->flush();
+
+            return $this->redirectToRoute('childaccount_index');
         }
 
         return $this->render('AppBundle:childaccount:edit.html.twig', array(
             'childAccount' => $childAccount,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'matrixAccounts'=>$matrixAccounts
         ));
     }
 
@@ -94,14 +100,9 @@ class ChildAccountController extends Controller
      */
     public function deleteAction(Request $request, ChildAccount $childAccount)
     {
-        $form = $this->createDeleteForm($childAccount);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($childAccount);
-            $em->flush($childAccount);
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($childAccount);
+        $em->flush($childAccount);
 
         return $this->redirectToRoute('childaccount_index');
     }
