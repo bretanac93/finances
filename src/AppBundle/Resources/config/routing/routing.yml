@@ -29,10 +29,6 @@ app_income:
     resource: "@AppBundle/Resources/config/routing/income.yml"
     prefix:   /dashboard/income
 
-app_saving:
-    resource: "@AppBundle/Resources/config/routing/saving.yml"
-    prefix:   /dashboard/saving
-
 app_matrixaccount:
     resource: "@AppBundle/Resources/config/routing/matrixaccount.yml"
     prefix:   /dashboard/matrixaccount
@@ -44,3 +40,15 @@ app_childaccount:
 app_accounttype:
     resource: "@AppBundle/Resources/config/routing/accounttype.yml"
     prefix:   /dashboard/accounttype
+
+app_amortization:
+    resource: "@AppBundle/Resources/config/routing/amortization.yml"
+    prefix:   /dashboard/amortization
+
+app_saving:
+    resource: "@AppBundle/Resources/config/routing/saving.yml"
+    prefix:   /dashboard/saving
+
+app_expenditure:
+    resource: "@AppBundle/Resources/config/routing/expenditure.yml"
+    prefix:   /dashboard/expenditure

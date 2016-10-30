@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Expenditures list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Expenditureaccount</th>
+                <th>Planned</th>
+                <th>Totalexpenditure</th>
+                <th>Totalexcessive</th>
+                <th>Subtotalexcessive</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expenditure in expenditures %}
+            <tr>
+                <td><a href="{{ path('expenditure_show', { 'id': expenditure.id }) }}">{{ expenditure.expenditureAccount }}</a></td>
+                <td>{{ expenditure.planned }}</td>
+                <td>{{ expenditure.totalExpenditure }}</td>
+                <td>{{ expenditure.totalExcessive }}</td>
+                <td>{{ expenditure.subTotalExcessive }}</td>
+                <td>{{ expenditure.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('expenditure_show', { 'id': expenditure.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('expenditure_edit', { 'id': expenditure.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('expenditure_new') }}">Create a new expenditure</a>
+        </li>
+    </ul>
+{% endblock %}

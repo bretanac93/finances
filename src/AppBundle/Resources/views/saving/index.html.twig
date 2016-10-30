@@ -6,7 +6,10 @@
     <table>
         <thead>
             <tr>
+                <th>Savingaccount</th>
                 <th>Planned</th>
+                <th>Totalsaving</th>
+                <th>Balance</th>
                 <th>Id</th>
                 <th>Actions</th>
             </tr>
@@ -14,7 +17,10 @@
         <tbody>
         {% for saving in savings %}
             <tr>
-                <td><a href="{{ path('saving_show', { 'id': saving.id }) }}">{{ saving.planned }}</a></td>
+                <td><a href="{{ path('saving_show', { 'id': saving.id }) }}">{{ saving.savingAccount }}</a></td>
+                <td>{{ saving.planned }}</td>
+                <td>{{ saving.totalSaving }}</td>
+                <td>{{ saving.balance }}</td>
                 <td>{{ saving.id }}</td>
                 <td>
                     <ul>

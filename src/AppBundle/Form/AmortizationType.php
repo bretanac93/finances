@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SavingType extends AbstractType
+class AmortizationType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('savingAccount')->add('planned')->add('totalSaving')->add('balance')->add('account')        ;
+        $builder->add('amortizationAccount')->add('planned')->add('totalAmortization')->add('totalExcessive')->add('account')        ;
     }
     
     /**
@@ -22,7 +22,7 @@ class SavingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Saving'
+            'data_class' => 'AppBundle\Entity\Amortization'
         ));
     }
 
@@ -31,7 +31,7 @@ class SavingType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_saving';
+        return 'appbundle_amortization';
     }
 
 

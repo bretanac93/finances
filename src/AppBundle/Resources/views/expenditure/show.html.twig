@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Expenditure</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Expenditureaccount</th>
+                <td>{{ expenditure.expenditureAccount }}</td>
+            </tr>
+            <tr>
+                <th>Planned</th>
+                <td>{{ expenditure.planned }}</td>
+            </tr>
+            <tr>
+                <th>Totalexpenditure</th>
+                <td>{{ expenditure.totalExpenditure }}</td>
+            </tr>
+            <tr>
+                <th>Totalexcessive</th>
+                <td>{{ expenditure.totalExcessive }}</td>
+            </tr>
+            <tr>
+                <th>Subtotalexcessive</th>
+                <td>{{ expenditure.subTotalExcessive }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ expenditure.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('expenditure_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('expenditure_edit', { 'id': expenditure.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
