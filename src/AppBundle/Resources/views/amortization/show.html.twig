@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Amortization</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Amortizationaccount</th>
+                <td>{{ amortization.amortizationAccount }}</td>
+            </tr>
+            <tr>
+                <th>Planned</th>
+                <td>{{ amortization.planned }}</td>
+            </tr>
+            <tr>
+                <th>Totalamortization</th>
+                <td>{{ amortization.totalAmortization }}</td>
+            </tr>
+            <tr>
+                <th>Totalexcessive</th>
+                <td>{{ amortization.totalExcessive }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ amortization.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('amortization_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('amortization_edit', { 'id': amortization.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

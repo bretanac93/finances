@@ -162,16 +162,20 @@
         </li>  
         <li class=""> <a href="javascript:;"> <i class="icon-custom-home"></i> <span class="title">Saldo Inicial</span> <span class="arrow "></span> </a>
             <ul class="sub-menu">
-              <li > <a href="layout_options.html">Bienes y Derechos</a> </li>
-              <li > <a href="boxed_layout.html">Deudas</a> </li>
-              <li > <a href="boxed_layout_v2.html">Planes de Ahorros</a> </li>
-              <li > <a href="extended_layout.html">Capital Neto</a> </li>
+              <li > <a href="#">Bienes y Derechos</a> </li>
+              <li > <a href="#">Deudas</a> </li>
+              <li > <a href="#">Planes de Ahorros</a> </li>
+              <li > <a href="#">Capital Neto</a> </li>
             </ul>
         </li>              
         <li class=""> <a href="javascript:;"> <i class="fa fa-folder-open"></i> <span class="title">Grupo de Cuentas</span> <span class="arrow "></span> </a>
           <ul class="sub-menu">
             <li > <a href="{{ path('matrixaccount_index') }}"> Cuentas Madres </a> </li>
-            <li > <a href="typography.html"> Cuentas Hijas </a> </li>
+            <li > <a href="{{ path('childaccount_index') }}"> Cuentas Hijas </a> </li>
+            
+            {% if is_granted('ROLE_ADMIN') %}
+              <li > <a href="{{ path('accounttype_index') }}"> Cuentas</a> </li>
+            {% endif %}
             
           </ul>
         </li>
