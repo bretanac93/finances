@@ -44,3 +44,7 @@ app_childaccount:
 app_accounttype:
     resource: "@AppBundle/Resources/config/routing/accounttype.yml"
     prefix:   /dashboard/accounttype
+
+app_home:
+    path: /
+    defaults: { _controller: AppBundle:DashBoard:home }

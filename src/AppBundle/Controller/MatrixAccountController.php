@@ -33,17 +33,17 @@ class MatrixAccountController extends Controller
      */
     public function newAction(Request $request)
     {
-        $matrixAccount = new Matrixaccount();
-        $form = $this->createForm('AppBundle\Form\MatrixAccountType', $matrixAccount);
-        $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
+        $matrixAccount = new Matrixaccount();
 
         $accountTypes = $em->getRepository('AppBundle:AccountType')->findAll();
-        
-        if ($form->isSubmitted()) {
-            
+        if($request->getMethod() == "POST") {
+            $matrixAccount->setCode($request->get('code'));
+            $matrixAccount->setName($request->get('name'));
+            $matrixAccount->setOwner($this->getUser());
+            $matrixAccount->setAccountType($em->getRepository('AppBundle:AccountType')->findOneById($request->get('account_type')));
             $em->persist($matrixAccount);
-            $em->flush($matrixAccount);
+            $em->flush();
 
             return $this->redirectToRoute('matrixaccount_index');
         }
@@ -51,7 +51,6 @@ class MatrixAccountController extends Controller
         return $this->render('AppBundle:matrixaccount:new.html.twig', array(
             'matrixAccount' => $matrixAccount,
             'accountTypes'=>$accountTypes,
-            'form' => $form->createView(),
         ));
     }
 
@@ -73,29 +72,24 @@ class MatrixAccountController extends Controller
      * Displays a form to edit an existing matrixAccount entity.
      *
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, MatrixAccount $matrixAccount)
     {
         $em = $this->getDoctrine()->getManager();
-        $editForm = $this->createForm('AppBundle\Form\MatrixAccountType', $matrixAccount);
         $accountTypes = $em->getRepository('AppBundle:AccountType')->findAll();
 
         if($request->getMethod() == "POST") {
-            $data = $editForm->getData();
-            $data->setAccountType($em->getRepository('AppBundle:AccountType')->findOneById($request->get('account_type')));
+            $matrixAccount->setCode($request->get('code'));
+            $matrixAccount->setName($request->get('name'));
+            $matrixAccount->setOwner($this->getUser());
+            $matrixAccount->setAccountType($em->getRepository('AppBundle:AccountType')->findOneById($request->get('account_type')));
+            $em->persist($matrixAccount);
+            $em->flush();
 
-            $editForm2 = $this->createForm('AppBundle\Form\MatrixAccountType', $data);
-
-            if ($editForm2->isValid()) {
-                $em->flush();
-
-                return $this->redirectToRoute('matrixaccount_index');
-            }
-            return $this->redirectToRoute('matrixaccount_edit', ['id' => $matrixAccount->getId()]);
+            return $this->redirectToRoute('matrixaccount_index');
         }
 
         return $this->render('AppBundle:matrixaccount:edit.html.twig', array(
             'matrixAccount' => $matrixAccount,
-            'edit_form' => $editForm->createView(),
             'accountTypes'=>$accountTypes,
         ));
     }
@@ -106,15 +100,10 @@ class MatrixAccountController extends Controller
      */
     public function deleteAction(Request $request, MatrixAccount $matrixAccount)
     {
-        $form = $this->createDeleteForm($matrixAccount);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($matrixAccount);
-            $em->flush($matrixAccount);
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($matrixAccount);
+        $em->flush();
+        
         return $this->redirectToRoute('matrixaccount_index');
     }
 

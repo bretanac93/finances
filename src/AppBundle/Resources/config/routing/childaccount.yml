@@ -21,4 +21,4 @@ childaccount_edit:
 childaccount_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:ChildAccount:delete" }
-    methods:  DELETE
+    methods:  [GET, DELETE]
