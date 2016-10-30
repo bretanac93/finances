@@ -21,4 +21,4 @@ accounttype_edit:
 accounttype_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:AccountType:delete" }
-    methods:  DELETE
+    methods:  GET

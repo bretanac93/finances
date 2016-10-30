@@ -33,22 +33,19 @@ class AccountTypeController extends Controller
      */
     public function newAction(Request $request)
     {
-        $accountType = new Accounttype();
-        $form = $this->createForm('AppBundle\Form\AccountTypeType', $accountType);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($request->getMethod() == "POST") {
+            $accountType = new AccountType();
+            $accountType->setName($request->get('name'));
+            $accountType->setRequiredBalance($request->get('required_balance'));
             $em->persist($accountType);
-            $em->flush($accountType);
+            $em->flush();
 
-            return $this->redirectToRoute('accounttype_show', array('id' => $accountType->getId()));
+            return $this->redirectToRoute('accounttype_index');
         }
 
-        return $this->render('AppBundle:accounttype:new.html.twig', array(
-            'accountType' => $accountType,
-            'form' => $form->createView(),
-        ));
+        return $this->render('AppBundle:accounttype:new.html.twig');
     }
 
     /**
@@ -71,21 +68,20 @@ class AccountTypeController extends Controller
      */
     public function editAction(Request $request, AccountType $accountType)
     {
-        $deleteForm = $this->createDeleteForm($accountType);
-        $editForm = $this->createForm('AppBundle\Form\AccountTypeType', $accountType);
-        $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($request->getMethod() == "POST") {
+            $accountType->setName($request->get('name'));
+            $accountType->setRequiredBalance($request->get('required_balance'));
+            $em->persist($accountType);
+            $em->flush();
 
-            return $this->redirectToRoute('accounttype_edit', array('id' => $accountType->getId()));
+            return $this->redirectToRoute('accounttype_index');
         }
 
         return $this->render('AppBundle:accounttype:edit.html.twig', array(
-            'accountType' => $accountType,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'accountType'=>$accountType
+            ));
     }
 
     /**
@@ -94,14 +90,9 @@ class AccountTypeController extends Controller
      */
     public function deleteAction(Request $request, AccountType $accountType)
     {
-        $form = $this->createDeleteForm($accountType);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($accountType);
-            $em->flush($accountType);
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($accountType);
+        $em->flush($accountType);
 
         return $this->redirectToRoute('accounttype_index');
     }
