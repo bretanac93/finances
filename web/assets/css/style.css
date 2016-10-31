@@ -275,7 +275,14 @@ body.modal-open .chat-window-wrapper {
   display: block;
   float: left;
   height: 60px;
+  border-bottom: 1px solid white;
 }
+
+.header .header-seperation div{
+  top:33%;
+  margin-left: 30px;
+}
+
 .header .header-seperation .notifcation-center {
   margin-right: 15px !important;
 }
