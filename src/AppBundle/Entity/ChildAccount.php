@@ -39,7 +39,7 @@ class ChildAccount
     /**
      * @var MatrixAccount
      *
-     * @ORM\ManyToOne(targetEntity="MatrixAccount", inversedBy="child_accounts")
+     * @ORM\ManyToOne(targetEntity="MatrixAccount", inversedBy="child_accounts", cascade={"remove"})
      * @ORM\JoinColumn(name="matrix_account_id", referencedColumnName="id")
      */
     private $matrix_account;
