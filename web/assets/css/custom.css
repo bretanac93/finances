@@ -1,8 +1,8 @@
-#edit_pencil {
+.edit_pencil {
   margin-right: 15px;
   margin-left: 10px;
 }
-#delete_times {
+.delete_times {
   color: #ea6565;
 }
 #login-information {
@@ -17,4 +17,16 @@
 }
 .add-new #icon-new {
   padding-left: 5px;
+}
+
+/** override **/
+.table-bordered th {
+  background-color: #cfd4d6;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+  text-align: right;
+}
+
+#example_paginate{
+  text-align: right;
 }

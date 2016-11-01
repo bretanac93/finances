@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Debt</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Debtamortizationaccount</th>
+                <td>{{ debt.debtAmortizationAccount }}</td>
+            </tr>
+            <tr>
+                <th>Openingbalance</th>
+                <td>{{ debt.openingBalance }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ debt.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('debt_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('debt_edit', { 'id': debt.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

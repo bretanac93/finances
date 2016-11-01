@@ -13,6 +13,19 @@ var color_warning="#f7cf5e";
 var color_info="#3b4751";
 
 $(document).ready(function () {
+
+    var $table = $('.mydatatable');
+    if($table.length){
+        $table.DataTable({
+            responsive: true
+        });
+        new $.fn.dataTable.FixedHeader( $table );
+    }
+
+
+
+
+
     calculateHeight();
     $(".remove-widget").click(function () {
         $(this).parent().parent().parent().addClass('animated fadeOut');

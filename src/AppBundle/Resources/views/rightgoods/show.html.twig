@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rightgood</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Rightgoodsaccount</th>
+                <td>{{ rightGood.rightGoodsAccount }}</td>
+            </tr>
+            <tr>
+                <th>Openingbalance</th>
+                <td>{{ rightGood.openingBalance }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ rightGood.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rightgoods_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('rightgoods_edit', { 'id': rightGood.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -57,3 +57,14 @@ app_expenditure:
     resource: "@AppBundle/Resources/config/routing/expenditure.yml"
     prefix:   /dashboard/expenditure
 
+app_debt:
+    resource: "@AppBundle/Resources/config/routing/debt.yml"
+    prefix:   /dashboard/debt
+
+app_savingplan:
+    resource: "@AppBundle/Resources/config/routing/savingplan.yml"
+    prefix:   /dashboard/savingplan
+
+app_rightgoods:
+    resource: "@AppBundle/Resources/config/routing/rightgoods.yml"
+    prefix:   /dashboard/rightgoods
