@@ -38,7 +38,7 @@
                                 {% for debt in debts %}
                                     <tr>
                                         <td>{{ debt.id }}</td>
-                                        <td>{{ debt.debtAmortizationAccount }}</td>
+                                        <td>{{ debt.account }}</td>
                                         <td>{{ debt.openingBalance }}</td>
                                         <td>
                                             <a href="{{ path('debt_edit', { 'id': debt.id }) }}"><i class="fa fa-pencil edit_pencil"></i></a>

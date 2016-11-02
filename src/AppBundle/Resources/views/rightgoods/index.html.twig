@@ -40,7 +40,7 @@
                                 {% for rightGood in rightGoods %}
                                     <tr>
                                         <td>{{ rightGood.id }}</td>
-                                        <td>{{ rightGood.rightGoodsAccount }}</td>
+                                        <td>{{ rightGood.account }}</td>
                                         <td>{{ rightGood.openingBalance }}</td>
                                         <td>
                                             <a href="{{ path('rightgoods_edit', { 'id': rightGood.id }) }}"><i class="fa fa-pencil edit_pencil"></i></a>

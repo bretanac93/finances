@@ -15,13 +15,6 @@ class Debt extends OpeningBalance
     /**
      * @var string
      *
-     * @ORM\Column(name="debtAmortizationAccount", type="string", length=255)
-     */
-    private $debtAmortizationAccount;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="openingBalance", type="decimal", precision=10, scale=2)
      */
     private $openingBalance;

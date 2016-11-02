@@ -21,18 +21,10 @@
 
             {{ form_start(edit_form,{'attr':{'id':'form'}}) }}
 
-            <div class="form-group">
-                <label class="form-label">Cuenta de Tipo de Bienes y Derechos</label>
-                <span class="help">e.g. "Un Ejemplo"</span>
-                <div class="  right">
-                    <i class=""></i>
-                    {{ form_widget(edit_form.rightGoodsAccount) }}
-                </div>
-            </div>
 
             <div class="form-group">
                 <label class="form-label">Cuenta Hija</label>
-                <span class="help">e.g. "Un Ejemplo"</span>
+                <span class="help">e.g. "Del Grupo de Bienes y Derechos"</span>
                 <div class="  right">
                     <i class=""></i>
                     {{ form_widget(edit_form.account) }}
@@ -41,7 +33,7 @@
 
             <div class="form-group">
                 <label class="form-label">Saldo Inicial</label>
-                <span class="help">e.g. "Un Ejemplo"</span>
+                <span class="help">e.g. "250,000,000"</span>
                 <div class="  right">
                     <i class=""></i>
                     {{ form_widget(edit_form.openingBalance) }}

@@ -14,14 +14,24 @@ class SavingPlanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('savingTargetAccount','choice',['attr'=>['class'=>'select2 form-control'],'choices'=>[
-                'a'=>'a',
-                'b'=>'b',
-                'c'=>'c',
-                'd'=>'d',
-            ]])
             ->add('openingBalance','text',['attr'=>['class'=>'form-control']])
-            ->add('account',null,['attr'=>['class'=>'select2 form-control'],'required'=>true]);
+            ->add('account','entity',[
+                'class'=>'AppBundle:ChildAccount',
+                'group_by'=>'matrixAccountName',
+                'property'=>'name',
+                'attr'=>[
+                    'class'=>'selectpicker show-tick form-control',
+                    'data-live-search'=>'true'
+                ],
+                'query_builder' => function(\Doctrine\ORM\EntityRepository $repo) {
+                    return $repo->createQueryBuilder('c')
+                        ->join('c.matrix_account','m')
+                        ->join('m.account_type','a')
+                        ->where("a.name='Capital'");
+                    //->andWhere('m.matrix_account IS NOT NULL');
+
+                }
+            ]);
     }
     
     /**
