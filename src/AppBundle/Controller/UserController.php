@@ -9,11 +9,7 @@ class UserController extends Controller
 {
     public function indexAction()
     {
-            $em = $this->getDoctrine()->getManager();
-            $user_manager = $this->get('fos_user.user_manager');
-            $user_logged = $user_manager->findUserByUsername($this->getUser()->getUsername());
-
-        return $this->render('AppBundle:User:index.html.twig', array('copropietaries' => $user_logged->getCopropietaries()));
+        return $this->render('AppBundle:User:index.html.twig', array('copropietaries' => $this->getUser()->getCopropietaries()));
     }
 
     public function newAction(Request $request) {
