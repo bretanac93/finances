@@ -160,12 +160,20 @@
       <br>
       <ul>
         
-        <li class=""> <a href="widgets.html"> <i class="fa fa-th"></i> <span class="title">Usuario</span></a> </li>
+        {% if active == 'usuarios' %}<li class="active open ">{% else %}<li>{% endif %}
+            <a href="javascript:;"> <i class="fa fa-user"></i><span class="title">
+              Usuarios  
+              </span><span class="arrow"></span> </a>
+              <ul class="sub-menu">
+                <li > <a href="{{ path('fos_user_profile_show') }}">Perfil </a> </li>
+                <li > <a href="{{ path('user_index') }}">Copropietarios </a> </li>
+              </ul>
+          </li>
         {% if active == 'plan financiero' %}<li class="active open ">{% else %}<li>{% endif %}
 
           <a href="javascript:;"> <i class="fa fa-file-text"></i><span class="title">
               Mi Plan Financiero
-            </span><span class="arrow open"></span> </a>
+            </span><span class="arrow"></span> </a>
             <ul class="sub-menu">
               <li > <a href="{{ path('income_index') }}">Ingresos </a> </li>
               <li > <a href="{{ path('debit_index') }}">Egresos </a> </li>

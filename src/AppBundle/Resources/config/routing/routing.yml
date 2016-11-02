@@ -68,3 +68,7 @@ app_savingplan:
 app_rightgoods:
     resource: "@AppBundle/Resources/config/routing/rightgoods.yml"
     prefix:   /dashboard/rightgoods
+
+app_users:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix:  /dashboard/users
