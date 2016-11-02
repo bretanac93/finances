@@ -1,4 +1,4 @@
-{% set active = '' %}
+{% set active = 'grupo cuentas' %}
 
 {% extends 'layout2.html.twig' %}
 
@@ -26,7 +26,6 @@
                         </div>
 
                         <div class="grid-body">
-
                             <table id="example" class="table table-striped table-bordered nowrap mydatatable" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
@@ -36,8 +35,9 @@
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
+                                <tbody>
                                 {% for accountType in accountTypes %}
-                                    <tbody>
+
                                     <tr>
                                         <td>{{ accountType.id }}</td>
                                         <td>{{ accountType.name }}</td>
@@ -47,8 +47,8 @@
                                             <a href="{{ path('accounttype_delete', { 'id': accountType.id }) }}"><i class="fa fa-times delete_times"></i></a>
                                         </td>
                                     </tr>
-                                    </tbody>
                                 {% endfor %}
+                                </tbody>
                             </table>
                         </div>
                     </div>
