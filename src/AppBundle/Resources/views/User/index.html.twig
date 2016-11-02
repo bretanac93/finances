@@ -1,0 +1,62 @@
+{% set active = 'usuarios' %}
+{% extends "::layout2.html.twig" %}
+
+{% block title %}Copropietarios{% endblock %}
+
+
+{% block body %}
+    <div class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div class="clearfix"></div>
+        <div class="content">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="grid simple ">
+                        <div class="grid-title">
+                            <h4>Copropietarios</h4>
+                            <!--<div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>-->
+                            <div class="add-new">
+                                <a href="{{ path('user_new') }}"><i class="fa fa-plus"><span id="icon-new">Crear Nuevo</span></i></a>
+                            </div>
+                        </div>
+
+                        <div class="grid-body">
+                            <table id="example" class="table table-striped table-bordered nowrap mydatatable" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre completo</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Activo</th>
+                                    <th>Fecha de inicio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in copropietaries %}
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.firstName }} {{ item.lastName }}</td>
+                                        <td>{{ item.email }}</td>
+                                        {% if item.isLocked %}
+                                        		<td style="color: #ea6565;"><i class="fa fa-close"></i></td>
+                                        	{% else %}
+                                        		<td style="color: #65eac6;"><i class="fa fa-check"></i></td>
+                                        	{% endif %}
+                                        <td>{{ item.createdAt | date('d/m/Y') }}</td>
+                                        <td>
+                                            <a href="{{ path('user_edit', { 'id': item.id }) }}"><i class="fa fa-pencil edit_pencil"></i></a>
+                                            <a href="{{ path('user_delete', { 'id': item.id }) }}"><i class="fa fa-times delete_times"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

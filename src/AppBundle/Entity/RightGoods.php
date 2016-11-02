@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class RightGoods extends OpeningBalance
 {
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="rightGoodsAccount", type="string", length=255)
-     */
-    private $rightGoodsAccount;
-
     /**
      * @var string
      *

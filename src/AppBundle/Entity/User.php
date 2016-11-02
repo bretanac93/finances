@@ -24,6 +24,20 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255)
+     */
+    protected $first_name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255)
+     */
+    protected $last_name;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="MatrixAccount", mappedBy="owner", cascade={"remove"})
@@ -37,10 +51,34 @@ class User extends BaseUser
      */
     private $child_accounts;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="User", mappedBy="propietary", cascade={"remove"})
+     */
+    private $copropietaries;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="copropietaries")
+     * @ORM\JoinColumn(name="propietary_id", referencedColumnName="id")
+     */
+    private $propietary;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="date")
+     */
+    private $created_at;
+
     public function __construct() {
         parent::__construct();
         $this->matrix_accounts = new ArrayCollection();
         $this->child_accounts = new ArrayCollection();
+        $this->copropietaries = new ArrayCollection();
+        $this->created_at = new \DateTime();
     }
 
     /**
@@ -87,5 +125,155 @@ class User extends BaseUser
      */
     public function addChildAccount($child_account) {
         $this->matrix_accounts->add($child_account);
+    }
+
+    /**
+     * Remove matrixAccount
+     *
+     * @param \AppBundle\Entity\MatrixAccount $matrixAccount
+     */
+    public function removeMatrixAccount(\AppBundle\Entity\MatrixAccount $matrixAccount)
+    {
+        $this->matrix_accounts->removeElement($matrixAccount);
+    }
+
+    /**
+     * Remove childAccount
+     *
+     * @param \AppBundle\Entity\ChildAccount $childAccount
+     */
+    public function removeChildAccount(\AppBundle\Entity\ChildAccount $childAccount)
+    {
+        $this->child_accounts->removeElement($childAccount);
+    }
+
+    /**
+     * Add copropietary
+     *
+     * @param \AppBundle\Entity\User $copropietary
+     *
+     * @return User
+     */
+    public function addCopropietary(\AppBundle\Entity\User $copropietary)
+    {
+        $this->copropietaries[] = $copropietary;
+
+        return $this;
+    }
+
+    /**
+     * Remove copropietary
+     *
+     * @param \AppBundle\Entity\User $copropietary
+     */
+    public function removeCopropietary(\AppBundle\Entity\User $copropietary)
+    {
+        $this->copropietaries->removeElement($copropietary);
+    }
+
+    /**
+     * Get copropietaries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCopropietaries()
+    {
+        return $this->copropietaries;
+    }
+
+    /**
+     * Set propietary
+     *
+     * @param \AppBundle\Entity\User $propietary
+     *
+     * @return User
+     */
+    public function setPropietary(\AppBundle\Entity\User $propietary = null)
+    {
+        $this->propietary = $propietary;
+
+        return $this;
+    }
+
+    /**
+     * Get propietary
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getPropietary()
+    {
+        return $this->propietary;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
     }
 }

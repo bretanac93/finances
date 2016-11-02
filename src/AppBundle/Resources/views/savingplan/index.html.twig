@@ -41,7 +41,7 @@
                                 {% for savingPlan in savingPlans %}
                                     <tr>
                                         <td>{{ savingPlan.id }}</td>
-                                        <td>{{ savingPlan.savingTargetAccount }}</td>
+                                        <td>{{ savingPlan.account }}</td>
                                         <td>{{ savingPlan.openingBalance }}</td>
                                         <td>
                                             <a href="{{ path('savingplan_edit', { 'id': savingPlan.id }) }}"><i class="fa fa-pencil edit_pencil"></i></a>

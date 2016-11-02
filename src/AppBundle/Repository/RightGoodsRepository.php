@@ -10,4 +10,5 @@ namespace AppBundle\Repository;
  */
 class RightGoodsRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

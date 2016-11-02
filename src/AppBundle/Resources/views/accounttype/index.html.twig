@@ -3,52 +3,58 @@
 {% extends 'layout2.html.twig' %}
 
 {% block body %}
-  <div class="page-content">
+    <div class="page-content">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
         <div id="portlet-config" class="modal hide">
             <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button"></button>
                 <h3>Widget Settings</h3>
             </div>
-            <div class="modal-body"> Widget settings form goes here</div>
+            <div class="modal-body"> Widget settings form goes here </div>
         </div>
         <div class="clearfix"></div>
         <div class="content">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="grid simple ">
+                        <div class="grid-title">
+                            <h4>Tipos de Cuenta</h4>
+                            <!--<div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>-->
+                            <div class="add-new">
+                                <a href="{{ path('accounttype_new') }}"><i class="fa fa-plus"><span id="icon-new">Crear Nuevo</span></i></a>
+                            </div>
+                        </div>
 
-        <div class="page-title">
-            <h3>Tipos de Cuenta</h3>
-        </div>
+                        <div class="grid-body">
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="add-new">
-                <a href="{{ path('accounttype_new') }}" title=""><i class="fa fa-plus"><span id="icon-new">Crear Nuevo</span></i></a>
+                            <table id="example" class="table table-striped table-bordered nowrap mydatatable" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Balance Exigido</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                {% for accountType in accountTypes %}
+                                    <tbody>
+                                    <tr>
+                                        <td>{{ accountType.id }}</td>
+                                        <td>{{ accountType.name }}</td>
+                                        <td>{{ accountType.requiredBalance }}</td>
+                                        <td>
+                                            <a href="{{ path('accounttype_edit', { 'id': accountType.id }) }}"><i class="fa fa-pencil edit_pencil"></i></a>
+                                            <a href="{{ path('accounttype_delete', { 'id': accountType.id }) }}"><i class="fa fa-times delete_times"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        {% endif %}    
-        <table class="table table-hover no-more-tables">
-        
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Balance Exigido</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            {% for accountType in accountTypes %}
-            <tbody>
-                <tr>
-                    <td>{{ accountType.id }}</td>
-                    <td>{{ accountType.name }}</td>
-                    <td>{{ accountType.requiredBalance }}</td>
-                    <td><a href="{{ path('accounttype_edit',{ 'id':accountType.id }) }}"><i class="fa fa-pencil" id="edit_pencil"></i></a>
-
-                    <a href="{{ path('accounttype_delete',{ 'id':accountType.id }) }}"><i class="fa fa-times" id="delete_times"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-        </table>
-        
         </div>
     </div>
 {% endblock %}
+

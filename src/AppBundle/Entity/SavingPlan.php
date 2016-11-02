@@ -15,13 +15,6 @@ class SavingPlan extends OpeningBalance
     /**
      * @var string
      *
-     * @ORM\Column(name="savingTargetAccount", type="string", length=255)
-     */
-    private $savingTargetAccount;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="openingBalance", type="decimal", precision=10, scale=2)
      */
     private $openingBalance;
