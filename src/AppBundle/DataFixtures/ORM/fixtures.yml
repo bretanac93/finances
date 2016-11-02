@@ -8,15 +8,142 @@ AppBundle\Entity\User:
     plainPassword: test
         
 AppBundle\Entity\AccountType:
-  account_type_{1..10}:
-    name: <text(10)>
-    required_balance: <text(10)>
-
+  account_type_1:
+    name: 'Bienes y Derechos'
+    required_balance: 'positivo'
+  account_type_2:
+    name: 'Deudas y Amortizaciones'
+    required_balance: 'negativo'
+  account_type_3:
+    name: 'Capital'
+    required_balance: 'negativo'
+  account_type_4:
+    name: 'Ingreso'
+    required_balance: 'negativo'
+  account_type_5:
+    name: 'Gastos'
+    required_balance: 'positivo'
+  
 AppBundle\Entity\MatrixAccount:
-  matrix_account_{1..10}:
-    code: <numberBetween(100,999999)>
-    name: <text(10)>
+  matrix_account_1:
+    code: '1'    
+    name: 'Efectivo'
     account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_2:
+    code: '2'    
+    name: 'Cuentas de Cheques'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_3:
+    code: '3'    
+    name: 'Cuentas de Ahorros'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_4:
+    code: '4'    
+    name: 'Cuentas de Plazo Fijo'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_5:
+    code: '5'    
+    name: 'Cuentas de Inversión'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_6:
+    code: '6'    
+    name: 'Cuentas por Cobrar'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_7:
+    code: '7'    
+    name: 'Inventario'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_8:
+    code: '8'    
+    name: 'Inmuebles'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_9:
+    code: '9'    
+    name: 'Equipos'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  matrix_account_10:
+    code: '10'
+    name: 'Otros Bienes'
+    account_type: '@account_type_1'
+    owner: '@user_1'
+  
+  # Deudas
+  matrix_account_11:
+    code: '11'
+    name: 'Efectivo por Pagar'
+    account_type: '@account_type_2'
+    owner: '@user_1'
+  matrix_account_12:
+    code: '12'
+    name: 'Tarjetas de Crédito'
+    account_type: '@account_type_2'
+    owner: '@user_1'
+  matrix_account_13:
+    code: '13'
+    name: 'Préstamos Personales'
+    account_type: '@account_type_2'
+    owner: '@user_1'
+  matrix_account_14:
+    code: '14'
+    name: 'Préstamos de Auto'
+    account_type: '@account_type_2'
+    owner: '@user_1'
+  matrix_account_15:
+    code: '15'
+    name: 'Préstamos de Vivienda'
+    account_type: '@account_type_2'
+    owner: '@user_1'
+  matrix_account_16:
+    code: '16'
+    name: 'Otras Deudas'
+    account_type: '@account_type_2'
+    owner: '@user_1'
+
+  matrix_account_17:
+    code: '17'
+    name: 'Beneficio de Neto'
+    account_type: '@account_type_3'
+    owner: '@user_1'
+  matrix_account_18:
+    code: '18'
+    name: 'Revaluaciones'
+    account_type: '@account_type_3'
+    owner: '@user_1'
+  matrix_account_19:
+    code: '19'
+    name: 'Objetivos de Ahorros'
+    account_type: '@account_type_3'
+    owner: '@user_1'
+
+  matrix_account_20:
+    code: '20'
+    name: 'Ingreso Fijo'
+    account_type: '@account_type_4'
+    owner: '@user_1'
+  matrix_account_21:
+    code: '21'
+    name: 'Ingresos Flexible'
+    account_type: '@account_type_4'
+    owner: '@user_1'
+
+  matrix_account_22:
+    code: '22'
+    name: 'Gasto Fijo'
+    account_type: '@account_type_5'
+    owner: '@user_1'
+  matrix_account_23:
+    code: '23'
+    name: 'Gasto Flexible'
+    account_type: '@account_type_5'
     owner: '@user_1'
 
 AppBundle\Entity\ChildAccount:
