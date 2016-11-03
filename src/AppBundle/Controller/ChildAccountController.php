@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\ChildAccount;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 /**
  * Childaccount controller.
  *
@@ -83,7 +83,7 @@ class ChildAccountController extends Controller
         $matrixAccounts = $em->getRepository('AppBundle:MatrixAccount')->findAll();
 
         if ($request->getMethod() == "POST") {
-            $childAccount->setCode("1.1");
+            $childAccount->setCode($request->get('code'));
             $childAccount->setName($request->get('name'));
             $childAccount->setMatrixAccount($em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount')));
             $em->persist($childAccount);
@@ -126,4 +126,13 @@ class ChildAccountController extends Controller
             ->getForm()
         ;
     }
+
+    public function getDataAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $request->get('matrixAccount')]);
+        $counti = count($count_child_type) + 1;
+        
+        return new Response($counti, 200);
+    }
+
 }
