@@ -73,32 +73,24 @@
             </a> </li>
         </ul>
         <ul class="nav quick-section">
-        
           <li class="m-r-10 input-prepend inside search-form no-boarder"> <span class="add-on"> <span class="iconset top-search"></span></span>
             <input name="" type="text"  class="no-boarder " placeholder="Search Dashboard" style="width:250px;">
           </li>
         </ul>
       </div>
-      <!-- END TOP NAVIGATION MENU -->
-      <!-- BEGIN CHAT TOGGLER -->
       <div class="pull-right">
-        <div class="chat-toggler"> 
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle pull-right" id="user-options">
-            <div class="user-details">
-              {% if app.user.firstName %}
-                <div class="username">Bienvenido <span class="bold">{{ app.user.firstName }} {{ app.user.lastName }}</span> </div>
-              {% else %}
-                <div class="username">Bienvenido <span class="bold">{{ app.user.username }}</span> </div>
-              {% endif %}
-            </div>
-            <div class="iconset top-down-arrow"></div>
-          </a>
+        <ul class="nav quick-section">
+          <li class="quicklinks">
+            <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">
+              <div class="iconset top-settings-dark "></div>
+            </a>
             <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                <li><a href="user-profile.html"><i class="fa fa-user"></i>&nbsp;&nbsp;Mi Perfil</a> </li>
+              <li><a href="{{ url('user_profile') }}"><i class="fa fa-user"></i>&nbsp;&nbsp;Mi Perfil</a> </li>
                 <li class="divider"></li>
-                <li><a href="/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Salir</a></li>
+                <li><a href="{{ url('fos_user_security_logout') }}"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Salir</a></li>
             </ul>
-          </div>
+          </li>
+        </ul>
       </div>
       <!-- END CHAT TOGGLER -->
     </div>
