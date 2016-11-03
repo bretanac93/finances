@@ -19,12 +19,12 @@
                 <h3>Nuevo Bienes y Derechos</h3>
             </div>
 
-            {{ form_start(form,{'attr':{'id':'form','data-toggle':'validator','role':'form'}}) }}
+            {{ form_start(form,{'attr':{'id':'form','class':'rightGoodForm'}}) }}
 
                 <div class="form-group">
                     <label class="form-label">Cuenta Hija</label>
                     <span class="help">e.g. "Del Grupo de Bienes y Derechos"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         {{ form_widget(form.account) }}
                     </div>
@@ -33,10 +33,10 @@
                 <div class="form-group">
                     <label class="form-label">Saldo Inicial</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <div class="help-block with-errors"></div>
-                        {{ form_widget(form.openingBalance,{'attr':{ 'pattern':'^[0-9]{1,}$','data-error':'Debe escribir el Saldo Inicial.','data-validate':'true'}}) }}
+                        {{ form_widget(form.openingBalance) }}
 
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label class="form-label">Total de Bienes y Derechos</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <input type="text" value="{{ total }}" class="form-control" disabled>
                     </div>

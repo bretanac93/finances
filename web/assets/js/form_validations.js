@@ -14,7 +14,7 @@ $(document).ready(function() {
                     },
                     form1CardHolderName: {
 						minlength: 2,
-                        required: true,
+                        required: true
                     },
                     form1CardNumber: {
                         required: true,
