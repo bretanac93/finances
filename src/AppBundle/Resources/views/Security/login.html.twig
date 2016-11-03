@@ -36,8 +36,11 @@
     <div class="row">
     		<div class="control-group col-md-10">
     			<div class="checkbox checkbox check-success">
+                
     				<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     				<label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+
+                <a class="pull-right" href="{{ url('fos_user_resetting_request') }}">Olvidó su contraseña?</a>
     			</div>
     		</div>
     </div>
