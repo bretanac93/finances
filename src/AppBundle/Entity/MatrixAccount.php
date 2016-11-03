@@ -182,6 +182,6 @@ class MatrixAccount
     }
 
     public function __toString() {
-        return $this->getName();
+        return "$this->code. $this->name";
     }
 }

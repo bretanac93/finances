@@ -237,7 +237,7 @@ class ChildAccount
     }
 
     public function __toString() {
-        return $this->getName();
+        return "$this->code. $this->name";
     }
 
     public function getMatrixAccountName(){

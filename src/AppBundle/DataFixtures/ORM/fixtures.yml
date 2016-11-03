@@ -146,15 +146,5 @@ AppBundle\Entity\MatrixAccount:
     account_type: '@account_type_5'
     owner: '@user_1'
 
-AppBundle\Entity\ChildAccount:
-  child_account_{1..10}:
-    code: <numberBetween(100,999999)>
-    name: <text(10)>
-    matrix_account: '@matrix_account_<numberBetween(1,10)>'
-    purpose: <text(20)>
-    owner: '@user_1'
-
-# AppBundle\Entity\Income:
-#   income_{1..10}:
     
 
