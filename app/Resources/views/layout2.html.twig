@@ -41,6 +41,7 @@
   <!-- BEGIN TOP NAVIGATION BAR -->
   <div class="navbar-inner">
     <div class="header-seperation">
+
       <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper" style="display:none">
         <li class="dropdown"> <a id="main-menu-toggle" href="#main-menu"  class="" >
           <div class="iconset top-menu-toggle-white"></div>
@@ -105,15 +106,15 @@
       <div class="user-info-wrapper">
         
         <div class="user-info">
+
+          <div class="username"><span class="semi-bold">SIMEI</span></div>
+
           <div class="greeting">Bienvenido!</div>
           {% if app.user.firstName %}
               <div class="username"><span class="semi-bold">{{ app.user.firstName }} {{ app.user.lastName }}</span> </div>
             {% else %}
               <div class="username"><span class="semi-bold">{{ app.user.username }}</span> </div>
             {% endif %}
-          <div class="status">Status<a href="#">
-            <div class="status-icon green"></div>
-            Online</a></div>
         </div>
       </div>
       <!-- END MINI-PROFILE -->
@@ -170,26 +171,12 @@
      
       </ul>
       <div class="clearfix"></div>
-      <!-- END SIDEBAR MENU -->
+
     </div>
-  </div>
-  <div class="footer-widget">
-    <div class="progress transparent progress-small no-radius no-margin">
-      <div data-percentage="79%" class="progress-bar progress-bar-success animate-progress-bar" ></div>
-    </div>
-    <div class="pull-right">
-      <div class="details-status"> <span data-animation-duration="560" data-value="86" class="animate-number"></span>% </div>
-      <a href="lockscreen.html"><i class="fa fa-power-off"></i></a></div>
   </div>
 {% block body %}
 {% endblock %}
 </div>
-<!-- END HEADER -->
-<!-- BEGIN CONTAINER -->
-
-
-<!-- END CONTAINER -->
-<!-- BEGIN CORE JS FRAMEWORK-->
     
 <!--[if lt IE 9]>
 <script src="assets/plugins/respond.js"></script>
@@ -213,7 +200,6 @@
 
 {# <script src="{{ asset('assets/plugins/bootstrap-select2/select2.min.js') }}" type="text/javascript"></script>---> #}
 
-<!-- datatables --->
 <script src="{{ asset('assets/plugins/datatables/js/jquery.dataTables.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/plugins/datatables/js/dataTables.bootstrap.min.js') }}" type="text/javascript" ></script>
 <script src="{{ asset('assets/plugins/datatables/js/dataTables.fixedHeader.min.js') }}" type="text/javascript" ></script>
