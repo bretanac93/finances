@@ -51,11 +51,15 @@
       <!-- END LOGO -->
       <ul class="nav pull-right notifcation-center">
         <li class="dropdown" id="header_task_bar"> <a href="{{ path('dashboard') }}" class="dropdown-toggle active" data-toggle="">
-          <div class="iconset top-home"></div>
+          <i class="fa fa-home" style="font-size: 20px !important"></i>
           </a> </li>
-        
-        <li class="dropdown" id="portrait-chat-toggler" style="display:none"> <a href="#sidr" class="chat-menu-toggle">
-          <div class="iconset top-chat-white "></div>
+        <li class="dropdown" id="header_logout_btn"> 
+          <a href="{{ url('fos_user_security_logout') }}" class="dropdown-toggle">
+            <i class="fa fa-power-off" style="font-size: 20px !important"></i>
+          </a>
+        </li>
+        <li class="dropdown" id="mob_logout_btn" style="display:none"> <a href="{{ url('fos_user_security_logout') }}" class="chat-menu-toggle">
+          <i class="fa fa-power-off" style="font-size: 20px !important"></i>
           </a> </li>
       </ul>
     </div>
