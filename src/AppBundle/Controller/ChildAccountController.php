@@ -40,7 +40,7 @@ class ChildAccountController extends Controller
         if ($request->getMethod() == "POST") {
             $child = new ChildAccount();
             $matrix_account_id = $request->get('matrixAccount');
-            $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount'))]);
+            $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $matrix_account_id]);
             $counti = count($count_child_type) + 1;
 
             $child->setCode("$matrix_account_id.$counti");
@@ -83,7 +83,11 @@ class ChildAccountController extends Controller
         $matrixAccounts = $em->getRepository('AppBundle:MatrixAccount')->findAll();
 
         if ($request->getMethod() == "POST") {
-            $childAccount->setCode($request->get('code'));
+            $matrix_account_id = $request->get('matrixAccount');
+            $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount'))]);
+            $counti = count($count_child_type) + 1;
+
+            $childAccount->setCode("$matrix_account_id.$counti");
             $childAccount->setName($request->get('name'));
             $childAccount->setMatrixAccount($em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount')));
             $em->persist($childAccount);
