@@ -19,7 +19,7 @@
                 <h3>Editar Cuenta de Gasto</h3>
             </div>
 
-            <form id="form" action="{{ path('expenditure_edit',{'id':expenditure.id}) }}" method="POST">
+            <form id="form" class="expenditureForm" action="{{ path('expenditure_edit',{'id':expenditure.id}) }}" method="POST">
 
                 <div class="form-group">
                     <label class="form-label">Cuenta de Gasto</label>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label class="form-label">Planificado</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <input type="text" id="appbundle_amortization_amount" name="planned"
                         required="required" value={{expenditure.planned}} class="form-control">
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label class="form-label">Total de Gasto</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <input type="text" id="appbundle_amortization_totalAmortization" name="totalExpenditure" placeholder="AutoGenerado" required="required" class="form-control" disabled>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label class="form-label">Total de Excedente</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <input type="text" id="appbundle_amortization_totalExcessive" name="totalExcessive" placeholder="AutoGenerado" required="required" class="form-control" disabled>
                     </div>

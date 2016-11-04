@@ -18,11 +18,11 @@
             <div class="page-title">
                 <h3>Editar Ingreso</h3>
             </div>
-            <form id="form" method="post" action="{{ path('income_edit', {'id': income.id}) }}">
+            <form id="form" class="incomeForm" method="post" action="{{ path('income_edit', {'id': income.id}) }}">
                 <div class="form-group">
                     <label class="form-label">Entrada de Efectivo</label>
                     <span class="help">e.g. "Balance Genral"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
 
                         <select id="appbundle_icome_cashEntry" name="cashEntry" class="select2 form-control">
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label class="form-label">Razon de Entrada</label>
                     <span class="help">e.g. "Salario Neto"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <select id="appbundle_income_entryReason" name="entryReason" class="select2 form-control">
                             {% for childAccount in childAccounts %}
@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label class="form-label">Importe</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <input type="text" id="appbundle_income_amount" name="amount" required="required" class="form-control" value="{{ income.amount }}">
                     </div>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="form-label">Breve Descripcion</label>
                     <span class="help">e.g. "Mi Cheque"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <textarea id="appbundle_income_briefDescription" name="briefDescription" required="required" class="form-control">{{ income.briefDescription }}</textarea>
                         

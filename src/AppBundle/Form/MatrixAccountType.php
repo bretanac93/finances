@@ -13,7 +13,7 @@ class MatrixAccountType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('code')->add('name')->add('account_type')->add('owner')        ;
+        $builder->add('code')->add('name')->add('account_type',null,['attr'=>['class'=>'select2']])->add('owner')        ;
     }
     
     /**

@@ -13,7 +13,7 @@ class ExpenditureType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('expenditureAccount')->add('planned')->add('totalExpenditure')->add('totalExcessive')->add('subTotalExcessive')->add('account')        ;
+        $builder->add('expenditureAccount')->add('planned')->add('totalExpenditure')->add('totalExcessive')->add('subTotalExcessive')->add('account',null,['attr'=>['class'=>'select2']])        ;
     }
     
     /**

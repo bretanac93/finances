@@ -14,6 +14,26 @@ var color_info="#3b4751";
 
 $(document).ready(function () {
 
+    /**
+     * Alien Padilla Rodriguez
+     * ****************************************************************************************************************/
+
+   /* $body = $('body');
+
+    $body.on('change','#appbundle_accounttype_required_balance',function () {
+        alert($(this).val());
+    });*/
+
+    /**
+     * Init Select2
+     * *************/
+    $(".select2").select2();
+
+
+
+    /**
+     * Init datatables
+     * ****************/
     var $table = $('.mydatatable');
     if($table.length){
         $table.DataTable({
@@ -22,7 +42,127 @@ $(document).ready(function () {
         new $.fn.dataTable.FixedHeader( $table );
     }
 
+    /**
+     * Form validations
+     * ******************/
+    $('#form').validate({
+        errorElement: 'span',
+        errorClass: 'error',
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            form1Email:{
+                required:true,
+                email:true
+            },
+            amount: {
+                required: true,
+                number: true
+            },
+            briefDescription:{
+                required:true
+            },
+            planned: {
+                required: true,
+                number: true
+            },
+            'appbundle_rightgoods[account]':{
+                required: true
+            },
+            'appbundle_rightgoods[openingBalance]':{
+                required: true,
+                number: true
+            },
+            'appbundle_debt[openingBalance]':{
+                required: true,
+                number: true
+            },
+            'appbundle_savingplan[openingBalance]':{
+                required: true,
+                number: true
+            },
+            'appbundle_savingplan[account]':{
+                required: true
+            },
+            cashEntry:{
+                required: true
+            },
+            entryReason:{
+                required: true
+            },
+            cashWithdrawal:{
+                required: true
+            },
+            withdrawalReason:{
+                required: true
+            },
+            expenditureAccount:{
+                required: true
+            },
+            account_type:{
+                required: true
+            },
+            matrixAccount:{
+                required: true
+            },
+            username:{
+                required: true
+            },
+            first_name:{
+                required: true
+            },
+            last_name:{
+                required: true
+            },
+            email:{
+                required: true,
+                email:true
+            }
 
+
+        },
+
+        invalidHandler: function (event, validator) {
+            //display error alert on form submit
+           /// alert('error')
+            event.preventDefault();
+        },
+
+        errorPlacement: function (error, element) { // render error placement for each input type
+            var icon = $(element).parent('.input-with-icon').children('i');
+            var parent = $(element).parent('.input-with-icon');
+            icon.removeClass('fa fa-check').addClass('fa fa-exclamation');
+            parent.removeClass('success-control').addClass('error-control');
+        },
+
+        highlight: function (element) { // hightlight error inputs
+            var parent = $(element).parent();
+            parent.removeClass('success-control').addClass('error-control');
+        },
+
+        unhighlight: function (element) { // revert the change done by hightlight
+
+        },
+
+        success: function (label, element) {
+            var icon = $(element).parent('.input-with-icon').children('i');
+            var parent = $(element).parent('.input-with-icon');
+            icon.removeClass("fa fa-exclamation").addClass('fa fa-check');
+            parent.removeClass('error-control').addClass('success-control');
+        },
+
+        submitHandler: function (form) {
+            form.submit();
+        }
+
+    });
+
+    $('.select2', "#form").change(function () {
+        $('#form').validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
+    });
+
+
+    /************************************************** end ***********************************************************/
 
 
 
