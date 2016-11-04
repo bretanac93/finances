@@ -30,3 +30,19 @@ div.dataTables_wrapper div.dataTables_filter label {
 #example_paginate{
   text-align: right;
 }
+
+.grid-title{
+  overflow: hidden;
+  position: relative;
+}
+.grid-title a{
+  color:white;
+}
+
+.grid-title > .add-new{
+  margin: 10px 0 20px 0;
+  right: 15px;
+}
+.grid-title > *{
+    display: inline-block;
+}

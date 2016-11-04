@@ -13,7 +13,7 @@ class AmortizationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('amortizationAccount')->add('planned')->add('totalAmortization')->add('totalExcessive')->add('account')        ;
+        $builder->add('amortizationAccount')->add('planned')->add('totalAmortization')->add('totalExcessive')->add('account',null,['attr'=>['class'=>'select2']])        ;
     }
     
     /**

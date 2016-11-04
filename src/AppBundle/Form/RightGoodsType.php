@@ -24,8 +24,7 @@ class RightGoodsType extends AbstractType
                 'group_by'=>'matrixAccountName',
                 'property'=>'name',
                 'attr'=>[
-                    'class'=>'selectpicker show-tick form-control',
-                    'data-live-search'=>'true'
+                    'class'=>'select2 form-control',
                 ],
                 'query_builder' => function(\Doctrine\ORM\EntityRepository $repo) {
                     return $repo->createQueryBuilder('c')
