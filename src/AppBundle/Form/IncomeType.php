@@ -15,9 +15,11 @@ class IncomeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('cashEntry', EntityType::class, array(
+                'attr'=>['class'=>'select2'],
                 'class'=>'AppBundle:ChildAccount',
                 'choice_label'=>'name'))
                 ->add('entryReason', EntityType::class, array(
+                    'attr'=>['class'=>'select2'],
                 'class'=>'AppBundle:ChildAccount',
                 'choice_label'=>'name'))
                 ->add('amount')

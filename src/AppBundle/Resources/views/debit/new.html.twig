@@ -19,12 +19,12 @@
                 <h3>Nuevo Egreso</h3>
             </div>
 
-            <form id="form" action="{{ path('debit_new') }}" method="POST">
+            <form id="form" class="debitForm" action="{{ path('debit_new') }}" method="POST">
 
                 <div class="form-group">
                     <label class="form-label">Salida de Efectivo</label>
                     <span class="help">e.g. "Balance Genral"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <select id="appbundle_debit_cashWithdrawal" name="cashWithdrawal" class="select2 form-control">
 
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label class="form-label">Razon de Salida</label>
                     <span class="help">e.g. "Salario Neto"</span>
-                    <div class="  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         
                         <select id="appbundle_debit_withdrawalReason" name="withdrawalReason" class="select2 form-control">
@@ -56,7 +56,7 @@
                 <div class="form-group">
                     <label class="form-label">Importe</label>
                     <span class="help">e.g. "250,000,000"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <input type="text" id="appbundle_debit_amount" name="amount" required="required" class="form-control">
                     </div>
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label class="form-label">Breve Descripcion</label>
                     <span class="help">e.g. "Mi Cheque"</span>
-                    <div class="input-with-icon  right">
+                    <div class="input-with-icon right">
                         <i class=""></i>
                         <textarea id="appbundle_debit_briefDescription" name="briefDescription" required="required" class="form-control"></textarea>
                         
