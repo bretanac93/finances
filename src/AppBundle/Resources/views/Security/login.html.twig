@@ -36,14 +36,18 @@
     <div class="row">
     		<div class="control-group col-md-10">
     			<div class="checkbox checkbox check-success">
+                
     				<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     				<label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+
+                <a class="pull-right" href="{{ url('fos_user_resetting_request') }}">Olvidó su contraseña?</a>
     			</div>
     		</div>
     </div>
 	<div class="row">
 		<div class="col-md-10">
 			<input class="btn btn-primary btn-cons pull-right" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+            <a class="btn btn-default btn-cons pull-left" href="{{ url('fos_user_registration_register') }}">Regístrate</a>
 		</div>
 	</div>
 </form>

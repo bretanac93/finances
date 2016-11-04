@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\ChildAccount;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 /**
  * Childaccount controller.
  *
@@ -39,7 +39,11 @@ class ChildAccountController extends Controller
 
         if ($request->getMethod() == "POST") {
             $child = new ChildAccount();
-            $child->setCode("1.1");
+            $matrix_account_id = $request->get('matrixAccount');
+            $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $matrix_account_id]);
+            $counti = count($count_child_type) + 1;
+
+            $child->setCode("$matrix_account_id.$counti");
             $child->setName($request->get('name'));
             $child->setMatrixAccount($em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount')));
             $em->persist($child);
@@ -79,7 +83,11 @@ class ChildAccountController extends Controller
         $matrixAccounts = $em->getRepository('AppBundle:MatrixAccount')->findAll();
 
         if ($request->getMethod() == "POST") {
-            $childAccount->setCode("1.1");
+            $matrix_account_id = $request->get('matrixAccount');
+            $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount'))]);
+            $counti = count($count_child_type) + 1;
+
+            $childAccount->setCode("$matrix_account_id.$counti");
             $childAccount->setName($request->get('name'));
             $childAccount->setMatrixAccount($em->getRepository('AppBundle:MatrixAccount')->findOneById($request->get('matrixAccount')));
             $em->persist($childAccount);
@@ -122,4 +130,13 @@ class ChildAccountController extends Controller
             ->getForm()
         ;
     }
+
+    public function getDataAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $count_child_type = $em->getRepository('AppBundle:ChildAccount')->findBy(['matrix_account' => $request->get('matrixAccount')]);
+        $counti = count($count_child_type) + 1;
+        
+        return new Response($counti, 200);
+    }
+
 }

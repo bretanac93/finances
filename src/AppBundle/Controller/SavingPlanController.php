@@ -33,9 +33,16 @@ class SavingPlanController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $savingPlan = new SavingPlan();
         $form = $this->createForm('AppBundle\Form\SavingPlanType', $savingPlan);
         $form->handleRequest($request);
+
+        $all_saving_plans = $em->getRepository('AppBundle:SavingPlan')->findAll();
+        $total = 0;
+        foreach ($all_saving_plans as $item) {
+            $total += $item->getOpeningBalance();
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -47,6 +54,7 @@ class SavingPlanController extends Controller
 
         return $this->render('AppBundle:savingplan:new.html.twig', array(
             'savingPlan' => $savingPlan,
+            'total' => $total,
             'form' => $form->createView(),
         ));
     }

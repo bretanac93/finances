@@ -237,44 +237,10 @@ class ChildAccount
     }
 
     public function __toString() {
-        return "$this->code. $this->name";
+        return $this->getName();
     }
 
     public function getMatrixAccountName(){
         return $this->getMatrixAccount() ? $this->getMatrixAccount()->getName() : null;
-    }
-
-    /**
-     * Add openingBalance
-     *
-     * @param \AppBundle\Entity\OpeningBalance $openingBalance
-     *
-     * @return ChildAccount
-     */
-    public function addOpeningBalance(\AppBundle\Entity\OpeningBalance $openingBalance)
-    {
-        $this->opening_balances[] = $openingBalance;
-
-        return $this;
-    }
-
-    /**
-     * Remove openingBalance
-     *
-     * @param \AppBundle\Entity\OpeningBalance $openingBalance
-     */
-    public function removeOpeningBalance(\AppBundle\Entity\OpeningBalance $openingBalance)
-    {
-        $this->opening_balances->removeElement($openingBalance);
-    }
-
-    /**
-     * Get openingBalances
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOpeningBalances()
-    {
-        return $this->opening_balances;
     }
 }

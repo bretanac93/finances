@@ -36,9 +36,15 @@ class RightGoodsController extends Controller
         $rightGood = new RightGoods();
         $form = $this->createForm('AppBundle\Form\RightGoodsType', $rightGood);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
+        $all_right_benefits = $em->getRepository('AppBundle:RightGoods')->findAll();
+        $total = 0;
+        foreach ($all_right_benefits as $item) {
+            $total += $item->getOpeningBalance();
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($rightGood);
             $em->flush($rightGood);
 
@@ -47,6 +53,7 @@ class RightGoodsController extends Controller
 
         return $this->render('AppBundle:rightgoods:new.html.twig', array(
             'rightGood' => $rightGood,
+            'total' => $total,
             'form' => $form->createView(),
         ));
     }
@@ -74,6 +81,7 @@ class RightGoodsController extends Controller
         $deleteForm = $this->createDeleteForm($rightGood);
         $editForm = $this->createForm('AppBundle\Form\RightGoodsType', $rightGood);
         $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -81,9 +89,16 @@ class RightGoodsController extends Controller
             return $this->redirectToRoute('rightgoods_index');
         }
 
+        $all_right_benefits = $em->getRepository('AppBundle:RightGoods')->findAll();
+        $total = 0;
+        foreach ($all_right_benefits as $item) {
+            $total += $item->getOpeningBalance();
+        }
+
         return $this->render('AppBundle:rightgoods:edit.html.twig', array(
             'rightGood' => $rightGood,
             'edit_form' => $editForm->createView(),
+            'total' => $total,
             'delete_form' => $deleteForm->createView(),
         ));
     }

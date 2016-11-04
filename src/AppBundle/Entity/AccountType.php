@@ -120,6 +120,6 @@ class AccountType
         $this->matrix_accounts->add($matrix_account);
     } 
     public function __toString() {
-        return $this->name;
+        return "$this->id. $this->name";
     }
 }

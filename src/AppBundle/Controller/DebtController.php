@@ -36,6 +36,13 @@ class DebtController extends Controller
         $debt = new Debt();
         $form = $this->createForm('AppBundle\Form\DebtType', $debt);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
+        $all_debts = $em->getRepository('AppBundle:Debt')->findAll();
+        $total = 0;
+        foreach ($all_debts as $item) {
+            $total += $item->getOpeningBalance();
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -47,6 +54,7 @@ class DebtController extends Controller
 
         return $this->render('AppBundle:debt:new.html.twig', array(
             'debt' => $debt,
+            'total' => $total,
             'form' => $form->createView(),
         ));
     }
@@ -75,6 +83,14 @@ class DebtController extends Controller
         $editForm = $this->createForm('AppBundle\Form\DebtType', $debt);
         $editForm->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $all_debts = $em->getRepository('AppBundle:Debt')->findAll();
+        $total = 0;
+        foreach ($all_debts as $item) {
+            $total += $item->getOpeningBalance();
+        }
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -83,6 +99,7 @@ class DebtController extends Controller
 
         return $this->render('AppBundle:debt:edit.html.twig', array(
             'debt' => $debt,
+            'total' => $total,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

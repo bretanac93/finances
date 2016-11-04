@@ -84,6 +84,9 @@ $(document).ready(function () {
             'appbundle_savingplan[account]':{
                 required: true
             },
+            'appbundle_debt[account]':{
+                required: true
+            },
             cashEntry:{
                 required: true
             },
