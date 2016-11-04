@@ -48,12 +48,9 @@
           </a> </li>
 
       </ul>
-      <!-- BEGIN LOGO -->
-      <a href="index.html"><img src="{{ asset('assets/img/logo.png') }}" class="logo" alt=""  data-src="{{asset('assets/img/logo.png') }}" data-src-retina="assets/img/logo2x.png" width="106" height="21"/></a>
-      <!-- END LOGO -->
-      <ul class="nav pull-right notifcation-center">
-        <li class="dropdown" id="header_task_bar"> <a href="{{ path('dashboard') }}" class="dropdown-toggle active" data-toggle="">
+  
           <div class="iconset top-home"></div>
+          <div class="companyName"><span class="semi-bold">SIMEI</span></div>
       
       
     </div>
@@ -88,7 +85,7 @@
             <div class="iconset top-down-arrow"></div>
           </a>
             <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                <li><a href="user-profile.html"><i class="fa fa-user"></i>&nbsp;&nbsp;Mi Perfil</a> </li>
+                <li><a href="{{ path('user_profile') }}"><i class="fa fa-user"></i>&nbsp;&nbsp;Mi Perfil</a> </li>
                 <li class="divider"></li>
                 <li><a href="/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Salir</a></li>
             </ul>
@@ -108,7 +105,7 @@
         
         <div class="user-info">
 
-          <div class="username"><span class="semi-bold">SIMEI</span></div>
+          
 
           <div class="greeting">Bienvenido!</div>
           {% if app.user.firstName %}
